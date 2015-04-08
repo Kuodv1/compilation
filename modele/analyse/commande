@@ -1,0 +1,2 @@
+Depuis le repertoire analyse
+java -jar java-cup-11a.jar -parser AnalyseurSyntaxique -symbols CodesLexicaux Grammaire.cup
