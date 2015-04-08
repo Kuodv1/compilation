@@ -112,6 +112,10 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          {:
 			RESULT = new Moins(e1,e2);
          :} |
+         MOINS:o EXPR:e
+         {:
+         	RESULT = new Moins(new Nombre("0"),e);
+         :} |
          EXPR:e1 MULT:o EXPR:e2
          {:
 			RESULT = new Mult(e1,e2);

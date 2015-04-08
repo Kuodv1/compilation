@@ -8,7 +8,7 @@ import modele.analyse.*;
 public class Luncher {
 	public Luncher() {
 		
-		String code = "3*(5+2)-2*2-17";
+		String code = "--(3+2)";
 		try {
 			
 			AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
