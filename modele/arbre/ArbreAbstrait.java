@@ -33,6 +33,30 @@ public abstract class ArbreAbstrait {
 	}
 	
 	/**
+	 * Création d'un fichier assembleur 
+	 * @param s
+	 */
+	public void writeFile(String s)
+	{
+	  try {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("fichierAssembleur.asm")));
+			
+		writer.write(".text \n"
+				+ " main \n:"
+				+ "move $s7,$sp \n"
+	                        + s
+			        + "end :\n"
+				+ "li $v0, 10\n"
+				+ "syscall ");
+			 
+		writer.close();
+	     }
+	   catch (IOException e)
+	    {
+		e.printStackTrace();
+	    }
+	}
+	/**
 	 * Fonction pour eviter les erreurs dans l analyseur Syntaxique.java
 	 */
 	public void ajouter(ArbreAbstrait instruction) {
