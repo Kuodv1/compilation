@@ -1,4 +1,6 @@
-package modele.arbre;
+package modele.arbre.mathematique;
+
+import modele.arbre.Expression;
 
 public class MoinsUnaire extends Expression {
 

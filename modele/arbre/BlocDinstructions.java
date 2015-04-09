@@ -26,7 +26,6 @@ public class BlocDinstructions extends ArbreAbstrait{
 	 * @param instruction Un ArbreAbstrait correspondant a une instruction
 	 */
 	public void ajouter(ArbreAbstrait instruction) {
-		System.out.println("ajout instruc");
 		listeInstructions.add(instruction);
 	}
 

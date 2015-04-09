@@ -1,4 +1,7 @@
-package modele.arbre;
+package modele.arbre.mathematique;
+
+import modele.arbre.Expression;
+
 public class Nombre extends Expression{
 
     private double nbr;

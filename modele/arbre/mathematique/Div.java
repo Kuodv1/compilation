@@ -1,11 +1,13 @@
-package modele.arbre;
+package modele.arbre.mathematique;
+
+import modele.arbre.Expression;
+import modele.arbre.OperateurBinaire;
+
 public class Div extends OperateurBinaire {
 	
-	private StringBuilder sb;
 
     public Div(Expression operande1, Expression operande2){
 	       	super(operande1,operande2);
-	       	sb = new StringBuilder();
        	}
        	
      
@@ -29,16 +31,5 @@ public class Div extends OperateurBinaire {
     		
     		return sb.toString();
 	}
-
-
-
-		@Override
-		public String toString() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-    	
-
 }
    

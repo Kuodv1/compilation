@@ -8,6 +8,12 @@ package modele.analyse;
 
 import java_cup.runtime.*;
 import modele.arbre.*;
+import modele.arbre.mathematique.Div;
+import modele.arbre.mathematique.Moins;
+import modele.arbre.mathematique.MoinsUnaire;
+import modele.arbre.mathematique.Mult;
+import modele.arbre.mathematique.Nombre;
+import modele.arbre.mathematique.Plus;
 
 /** CUP v0.11a beta 20060608 generated parser.
   * @version Thu Apr 09 17:46:57 CEST 2015
