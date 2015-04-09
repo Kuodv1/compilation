@@ -114,7 +114,7 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          :} |
          MOINS:o EXPR:e
          {:
-         	RESULT = new Moins(new Nombre("0"),e);
+         	RESULT = new MoinsUnaire(e);
          :} |
          EXPR:e1 MULT:o EXPR:e2
          {:
