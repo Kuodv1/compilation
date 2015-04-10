@@ -1,11 +1,5 @@
 package modele.arbre;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.IOException;
-
 /**
  * ArbreAbstrait
  * Classe abstraite, afin de generer le code d execution correspondant au instruction passees par 
@@ -40,57 +34,7 @@ public abstract class ArbreAbstrait {
 	
 	public abstract boolean semantiqueCorrect();
 	
-	/**
-	 * Création d'un fichier assembleur 
-	 * @param s
-	 */
-	public void writeFile(String s)
-	{
-	  try {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("fichierAssembleur.asm")));
-			
-		writer.write(".text \n"
-				+ " main:\n"
-				+ "move $s7,$sp \n"
-	                        + s
-			        + "end :\n"
-				+ "li $v0, 10\n"
-				+ "syscall ");
-			 
-		writer.close();
-	     }
-	   catch (IOException e)
-	    {
-		e.printStackTrace();
-	    }
-	}
 	
-		/**
-	 * Lecture d'un fichier assembleur 
-	 * @param filename
-	 */
-	public String readFile(File filename) {
-	    try {
-	       
-	        FileReader reader = new FileReader(filename);
-	        try {
-	           
-	            StringBuffer buffer = new StringBuffer();
-	            char[] tmp = new char[2048];
-	            int len;
-	            while ( (len = reader.read(tmp)) > 0 ) {
-	                buffer.append(tmp, 0, len);
-	            }
-	            return buffer.toString();
-	        } finally {
-	            reader.close();
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        return null;
-	    }
-	 
-	}
 	/**
 	 * Fonction pour eviter les erreurs dans l analyseur Syntaxique.java
 	 */
