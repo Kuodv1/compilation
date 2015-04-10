@@ -5,13 +5,18 @@ import modele.arbre.OperateurBinaire;
 
 public class Plus extends OperateurBinaire {
 
+    /**
+     * Constrcuteur Plus
+     */
     public Plus(Expression operande1, Expression operande2){
 	       	super(operande1,operande2);
 	       	isBool = false;
        	}
        	
      
-
+	/**
+	 * Retourne le code MIPS d'une addition sous forme de chaîne caractère
+	 */
     	public String getCodeDecore(){
     		sb.append(opg.getCodeDecore()+"\n");
     		sb.append("sw   $v0, 0($sp)\n");
