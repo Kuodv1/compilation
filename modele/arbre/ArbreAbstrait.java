@@ -3,6 +3,7 @@ package modele.arbre;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -62,6 +63,33 @@ public abstract class ArbreAbstrait {
 	    {
 		e.printStackTrace();
 	    }
+	}
+	
+		/**
+	 * Lecture d'un fichier assembleur 
+	 * @param filename
+	 */
+	public String readFile(File filename) {
+	    try {
+	       
+	        FileReader reader = new FileReader(filename);
+	        try {
+	           
+	            StringBuffer buffer = new StringBuffer();
+	            char[] tmp = new char[2048];
+	            int len;
+	            while ( (len = reader.read(tmp)) > 0 ) {
+	                buffer.append(tmp, 0, len);
+	            }
+	            return buffer.toString();
+	        } finally {
+	            reader.close();
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	 
 	}
 	/**
 	 * Fonction pour eviter les erreurs dans l analyseur Syntaxique.java
