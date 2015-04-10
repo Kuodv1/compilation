@@ -5,12 +5,18 @@ import modele.arbre.OperateurBinaire;
 
 public class Different extends OperateurBinaire {
 	
+	/**
+	 * Constucteur Different
+	 */
 	public Different(Expression e1, Expression e2) {
 		super(e1,e2);
 		isBool = true;
 	}
 
 	@Override
+	/**
+	 * Retourne le code en MIPS sous forme de chaîne de caractère
+	 */
 	public String getCodeDecore() {
  		sb.append(opg.getCodeDecore()+"\n");
 		sb.append("sw   $v0, 0($sp)\n");
