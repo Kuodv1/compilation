@@ -7,17 +7,26 @@ public class MoinsUnaire extends Expression {
 	protected StringBuilder sb;
 	protected Expression e;
 	
+	/**
+	 * Constrcuteur MoinsUnaire
+	 */
 	public MoinsUnaire(Expression e) {
 		this.e = e;
 		sb = new StringBuilder();
 		isBool = false;
 	}
 	
+	/**
+	 * Retourne un boolean qui vérifie la sémantique
+	 */
 	public boolean semantiqueCorrect() {
 		return (this.isBool == e.getIsBool())&&e.semantiqueCorrect();
 	}
 	
 	@Override
+	/**
+	 * Retourne le code MIPS d'une négation sous forme de chaîne caractère
+	 */
 	public String getCodeDecore() {
 		sb.append(e.getCodeDecore()+"\n");
 		sb.append("#MoinsUnaire\n");
