@@ -38,6 +38,8 @@ chiffre = [0-9]
 nombre  = {chiffre}+
 idf = {lettre}+
 
+bool = "vrai" | "faux"
+
 commentaireSlashSlash = [/][/].*\n
 commentaireSlashEtoile = [/][*]
 commentaireEtoileSlash = [*][/]
@@ -52,9 +54,9 @@ commentaireEtoileSlash = [*][/]
 
 
 <YYINITIAL>"("			{ return symbol(CodesLexicaux.PAROUV, yytext()); }
+<YYINITIAL>{bool}			{ return symbol(CodesLexicaux.BOOL, yytext()) ; }
 
 <YYINITIAL>{idf}			{ return symbol(CodesLexicaux.IDF, yytext()) ; }
-
 <YYINITIAL>"+"			{ return symbol(CodesLexicaux.PLUS, yytext()) ;}
 <YYINITIAL>"-"			{ return symbol(CodesLexicaux.MOINS, yytext()) ;}
 <YYINITIAL>"*"			{ return symbol(CodesLexicaux.MULT, yytext()) ;}

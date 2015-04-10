@@ -38,7 +38,7 @@ public String readFile(File filename) {
 			String ligne;
 			int i = 1;
 			while ((ligne=br.readLine())!=null){
-				System.out.println("Ligne "+i+" : "+ligne);
+				//System.out.println("Ligne "+i+" : "+ligne);
 				contenu.append(ligne+"\n");
 				i++;
 			}

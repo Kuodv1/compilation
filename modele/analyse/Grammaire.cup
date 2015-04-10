@@ -64,7 +64,7 @@ parser code {:
    case a String value, are listed on the next line down. */
 
 terminal Symbol    POINTVIRGULE, PAROUV, PARFER;
-terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, AND, OR, XOR, NOT, IDF, CSTE;
+terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, AND, OR, XOR, NOT, IDF, CSTE, BOOL;
 
    
 /* Non terminals used in the grammar section.  
@@ -166,5 +166,9 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
 		 CSTE:c 
 	     {:
 			RESULT = new Nombre(c);
+         :} |
+         BOOL:t
+         {:
+         	RESULT = new Booleen(t);
          :}
          ;

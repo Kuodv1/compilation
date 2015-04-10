@@ -19,7 +19,7 @@ public class Luncher {
 																new ByteArrayInputStream(code.getBytes())));
 			
 				ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
-				System.out.println(arbre.getCodeDecore());
+				//System.out.println(arbre.getCodeDecore());
 				io.writeFile(arbre.getCodeDecore(),nameSortie);
 				
 				
