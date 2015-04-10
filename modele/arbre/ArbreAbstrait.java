@@ -37,7 +37,7 @@ public abstract class ArbreAbstrait {
 	 * @param s
 	 */
 	public void writeFile(String s)
-	{
+	{/*
 	  try {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("fichierAssembleur.asm")));
 			
@@ -54,7 +54,7 @@ public abstract class ArbreAbstrait {
 	   catch (IOException e)
 	    {
 		e.printStackTrace();
-	    }
+	    }*/
 	}
 	/**
 	 * Fonction pour eviter les erreurs dans l analyseur Syntaxique.java

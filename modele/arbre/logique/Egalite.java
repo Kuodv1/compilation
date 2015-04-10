@@ -20,12 +20,7 @@ public class Egalite extends OperateurBinaire {
         sb.append("#Egalite\n");
         sb.append("lw $t8, 4($sp)\n");	// t8 = première valeur de la pile
         sb.append("addi $sp, $sp, 4\n"); // dépilement
-        sb.append("beq $v0, $t8, egal #si v0 == t8, alors va a egal\n");
-        sb.append("li $v0, 0 #v0 = 0, soit faux \n");
-        sb.append("j suiteEga #jump à la suite\n");
-        sb.append("egal: #v0 == t0\n");
-        sb.append("li $v0, 1#v0 = 1, soit v0 = Vrai\n");
-        sb.append("suiteEga: #v0 est soit vrai, soit faux\n");
+        sb.append("seq $v0, $v0, $t8 # v0 = (v0 == t8)\n");
 		return sb.toString();
 	}
 
