@@ -5,12 +5,18 @@ import modele.arbre.OperateurBinaire;
 
 public class Superieure extends OperateurBinaire{
 
+        /**
+         * Constrcuteur Supérieure
+         */
 	public Superieure(Expression e1, Expression e2) {
 		super(e1, e2);
 		isBool = true;
 	}
 
 	@Override
+	/**
+	 * Retourne le code MIPS d'un supérieur strict sous forme de chaîne caractère
+	 */
 	public String getCodeDecore() {
 		sb.append(opg.getCodeDecore()+"\n");
 		sb.append("sw   $v0, 0($sp)\n");
