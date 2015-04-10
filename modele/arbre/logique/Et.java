@@ -4,13 +4,19 @@ import modele.arbre.Expression;
 import modele.arbre.OperateurBinaire;
 
 public class Et extends OperateurBinaire{
-
+	
+	/**
+	 * Constructeur Et
+	 */
 	public Et(Expression e1, Expression e2) {
 		super(e1, e2);
 		isBool = true;
 	}
 
 	@Override
+	/**
+	 * Retourne le code MIPS d'un ET logique sous forme de chaîne caractère
+	 */
 	public String getCodeDecore() {
  		sb.append(opg.getCodeDecore()+"\n");
 		sb.append("sw   $v0, 0($sp)\n");
