@@ -8,7 +8,7 @@ import modele.analyse.*;
 public class Luncher {
 	public Luncher() {
 		
-		String code = "!((1>0)^(3==3))";
+		String code = "1+3";
 		try {
 			
 			AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
@@ -16,8 +16,11 @@ public class Luncher {
 															new ByteArrayInputStream(code.getBytes())));
 		
 			ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
-
-			System.out.println(arbre.getCodeDecore());
+			if(arbre.semantiqueCorrect()) {
+				System.out.println(arbre.getCodeDecore());
+			} else {
+				System.out.println("erreur");
+			}
 
 		}catch (Exception e) {
 			//Erreur d ecriture de code (non reconnus par l analyseurSyntaxique)

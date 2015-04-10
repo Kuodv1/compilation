@@ -7,6 +7,7 @@ public class Egalite extends OperateurBinaire {
 	
 	public Egalite(Expression e1, Expression e2) {
 		super(e1,e2);
+		isBool = true;
 	}
 	
 	

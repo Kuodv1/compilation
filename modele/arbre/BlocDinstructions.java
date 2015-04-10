@@ -29,6 +29,16 @@ public class BlocDinstructions extends ArbreAbstrait{
 		listeInstructions.add(instruction);
 	}
 
+	public boolean semantiqueCorrect() {
+		boolean err = false;
+		int i = 0;
+		while(i<listeInstructions.size() && !err) {
+			err = listeInstructions.get(i).semantiqueCorrect();
+			i++;
+		}
+		return err;
+	}
+	
 	/**
 	 * Fonction pour recuperer l ensemble des instructions
 	 * @return Un String correspondant a l ensemble des instructions traduites

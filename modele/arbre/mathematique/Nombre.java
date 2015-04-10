@@ -8,6 +8,11 @@ public class Nombre extends Expression{
 
     public Nombre(String cste){
 	this.nbr = Integer.parseInt(cste);
+	isBool = false;
+    }
+    
+    public boolean semantiqueCorrect() {
+    	return true;
     }
     
     public double valeur(){

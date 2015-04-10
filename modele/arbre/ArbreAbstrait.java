@@ -32,6 +32,8 @@ public abstract class ArbreAbstrait {
 		return code;
 	}
 	
+	public abstract boolean semantiqueCorrect();
+	
 	/**
 	 * Création d'un fichier assembleur 
 	 * @param s

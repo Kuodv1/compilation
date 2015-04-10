@@ -11,6 +11,11 @@ public abstract class OperateurBinaire extends Expression{
 	sb = new StringBuilder();
     }
 
+    public boolean semantiqueCorrect() {
+    	System.out.println("g:"+opg.isBool+" d:"+opg.isBool+" - mil:"+isBool);
+    	return (opg.isBool==this.isBool)&&(opd.isBool==this.isBool)&&opg.semantiqueCorrect()&&opd.semantiqueCorrect();
+    }
+    
     public int nbOperateurs(){
 	return opg.nbOperateurs()+opd.nbOperateurs()+1;
     }

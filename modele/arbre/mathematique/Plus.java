@@ -7,6 +7,7 @@ public class Plus extends OperateurBinaire {
 
     public Plus(Expression operande1, Expression operande2){
 	       	super(operande1,operande2);
+	       	isBool = false;
        	}
        	
      

@@ -7,6 +7,7 @@ public class Ou extends OperateurBinaire {
 
 	public Ou(Expression e1, Expression e2) {
 		super(e1,e2);
+		isBool = true;
 	}
 
 	@Override

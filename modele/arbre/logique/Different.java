@@ -7,7 +7,7 @@ public class Different extends OperateurBinaire {
 	
 	public Different(Expression e1, Expression e2) {
 		super(e1,e2);
-		
+		isBool = true;
 	}
 
 	@Override

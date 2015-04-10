@@ -9,6 +9,11 @@ public class Booleen extends Expression {
 	public Booleen(String val) {
 		if(val.equals("faux")) bool = 0;
 		else bool = 1;
+		isBool = true;
+	}
+	
+	public boolean semantiqueCorrect() {
+		return true;
 	}
 	
 	@Override

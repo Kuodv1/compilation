@@ -10,6 +10,11 @@ public class MoinsUnaire extends Expression {
 	public MoinsUnaire(Expression e) {
 		this.e = e;
 		sb = new StringBuilder();
+		isBool = false;
+	}
+	
+	public boolean semantiqueCorrect() {
+		return (this.isBool == e.getIsBool())&&e.semantiqueCorrect();
 	}
 	
 	@Override

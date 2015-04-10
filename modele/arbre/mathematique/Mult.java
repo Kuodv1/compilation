@@ -8,6 +8,7 @@ public class Mult extends OperateurBinaire {
 
     public Mult(Expression operande1, Expression operande2){
 	       	super(operande1,operande2);
+	       	isBool = false;
        	}
        	
      

@@ -7,6 +7,7 @@ public class Moins extends OperateurBinaire {
 
     public Moins(Expression operande1, Expression operande2){
 	       	super(operande1,operande2);
+	       	isBool = false;
        	}
        	
      

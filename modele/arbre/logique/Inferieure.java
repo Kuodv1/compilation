@@ -7,6 +7,7 @@ public class Inferieure extends OperateurBinaire{
 
 	public Inferieure(Expression e1, Expression e2) {
 		super(e1, e2);
+		isBool = true;
 	}
 
 	@Override
