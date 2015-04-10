@@ -5,12 +5,18 @@ import modele.arbre.OperateurBinaire;
 
 public class Inferieure extends OperateurBinaire{
 
+	/**
+	 * Constructeur Inférieur
+	 */
 	public Inferieure(Expression e1, Expression e2) {
 		super(e1, e2);
 		isBool = true;
 	}
 
 	@Override
+	/**
+	 * Retourne le code MIPS d'un inferieur sous forme de chaîne caractère
+	 */
 	public String getCodeDecore() {
 		sb.append(opg.getCodeDecore()+"\n");
 		sb.append("sw   $v0, 0($sp)\n");
