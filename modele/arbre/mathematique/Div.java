@@ -5,14 +5,18 @@ import modele.arbre.OperateurBinaire;
 
 public class Div extends OperateurBinaire {
 	
-
+    /**
+     * Constructeur Div
+     */
     public Div(Expression operande1, Expression operande2){
 	       	super(operande1,operande2);
 	       	isBool = false;
        	}
        	
      
-
+	/**
+	 * Retourne le code MIPS d'une addition sous forme de chaîne caractère
+	 */
     	public String getCodeDecore(){
 	        sb.append("#Division\n");
     		sb.append("li $v0,"+opg.getCodeDecore()+"\n");
