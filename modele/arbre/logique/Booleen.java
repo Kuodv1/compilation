@@ -15,7 +15,7 @@ public class Booleen extends Expression {
 	}
 	
 	/**
-	 * Retourne un boolean qui vérifie la sémantique
+	 * Retourne un booleen qui vérifie la sémantique
 	 * @return 
 	 */ 
 	public boolean semantiqueCorrect() {
@@ -23,7 +23,7 @@ public class Booleen extends Expression {
 	}
 	
 	/**
-	 * Retourne le code en MIPS sous forme de chaîne de caractère
+	 * Retourne le code en MIPS d'un booleen sous forme de chaîne de caractère
 	 */
 	public String getCodeDecore() {
 		StringBuilder sb = new StringBuilder();
