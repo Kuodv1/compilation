@@ -8,7 +8,7 @@ import modele.analyse.*;
 public class Luncher {
 	public Luncher() {
 		
-		String code = "!((1>0)^(3!=3))";
+		String code = "!((1<0)^(3!=3))";
 		try {
 			
 			AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
