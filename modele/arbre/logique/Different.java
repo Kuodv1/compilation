@@ -15,7 +15,7 @@ public class Different extends OperateurBinaire {
 
 	@Override
 	/**
-	 * Retourne le code en MIPS sous forme de chaîne de caractère
+	 * Retourne le code en MIPS d'une difference sous forme de chaîne de caractère
 	 */
 	public String getCodeDecore() {
  		sb.append(opg.getCodeDecore()+"\n");
