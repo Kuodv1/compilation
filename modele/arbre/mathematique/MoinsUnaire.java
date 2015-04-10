@@ -23,6 +23,10 @@ public class MoinsUnaire extends Expression {
 		return (this.isBool == e.getIsBool())&&e.semantiqueCorrect();
 	}
 	
+	public String toString() {
+		return "-"+e.toString();
+	}
+	
 	@Override
 	/**
 	 * Retourne le code MIPS d'une négation sous forme de chaîne caractère

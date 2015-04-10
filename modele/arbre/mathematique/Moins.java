@@ -1,5 +1,6 @@
 package modele.arbre.mathematique;
 
+import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 import modele.arbre.OperateurBinaire;
 
@@ -8,9 +9,8 @@ public class Moins extends OperateurBinaire {
     /**
      * Constrcuteur Moins
      */
-    public Moins(Expression operande1, Expression operande2){
-	       	super(operande1,operande2);
-	       	isBool = false;
+    public Moins(Expression operande1, Expression operande2)throws OperandeDiffException{
+	       	super(operande1,operande2,false,"-");
        	}
        	
      

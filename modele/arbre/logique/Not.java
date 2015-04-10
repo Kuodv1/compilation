@@ -22,6 +22,10 @@ public class Not extends Expression {
 		return (e.getIsBool()==isBool)&&e.semantiqueCorrect();
 	}
 	
+	public String toString() {
+		return "!"+e.toString();
+	}
+	
 	@Override
 	/**
 	 * Retourne le code MIPS d'un non logique sous forme de chaîne caractère

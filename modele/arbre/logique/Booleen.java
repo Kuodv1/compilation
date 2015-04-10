@@ -22,6 +22,12 @@ public class Booleen extends Expression {
 		return true;
 	}
 	
+	public String toString() {
+		String ret = "faux";
+		if(bool==1) ret = "vrai";
+		return ret;
+	}
+	
 	/**
 	 * Retourne le code en MIPS d'un booleen sous forme de chaîne de caractère
 	 */

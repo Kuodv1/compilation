@@ -1,5 +1,6 @@
 package modele.arbre.logique;
 
+import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 import modele.arbre.OperateurBinaire;
 
@@ -7,12 +8,16 @@ public class Different extends OperateurBinaire {
 	
 	/**
 	 * Constucteur Different
+	 * @throws OperandeDiffException 
 	 */
-	public Different(Expression e1, Expression e2) {
-		super(e1,e2);
-		isBool = true;
+	public Different(Expression e1, Expression e2) throws OperandeDiffException {
+		super(e1,e2,true,"!=");
 	}
 
+	public boolean semantiqueCorrect() {
+		return (opg.getIsBool()==false)&&(opd.getIsBool()==false);
+	}
+	
 	@Override
 	/**
 	 * Retourne le code en MIPS d'une difference sous forme de chaîne de caractère

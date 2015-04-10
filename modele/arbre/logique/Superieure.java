@@ -1,5 +1,6 @@
 package modele.arbre.logique;
 
+import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 import modele.arbre.OperateurBinaire;
 
@@ -8,9 +9,12 @@ public class Superieure extends OperateurBinaire{
         /**
          * Constrcuteur Supérieure
          */
-	public Superieure(Expression e1, Expression e2) {
-		super(e1, e2);
-		isBool = true;
+	public Superieure(Expression e1, Expression e2) throws OperandeDiffException{
+		super(e1, e2,true,">");
+	}
+	
+	public boolean semantiqueCorrect() {
+		return (opg.getIsBool()==false)&&(opd.getIsBool()==false);
 	}
 
 	@Override
