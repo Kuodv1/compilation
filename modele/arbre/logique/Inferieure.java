@@ -18,14 +18,14 @@ public class Inferieure extends OperateurBinaire{
 		
         sb.append("#Inferieure strict\n");
         sb.append("lw $t8, 4($sp)\n");	// t8 = première valeur de la pile
-        
+        sb.append("addi $sp, $sp, 4\n"); // dépilement
         sb.append("sub $v0,$t8,$v0 # v0 = t8-v0  t8=opg, v0=opd\n");
     	sb.append("bgez $v0, sup # si opg-opd>=0 allez à sup\n");//si t8-v0 >= 0, alors t8>v0
         sb.append("li $v0, 1#v0 = 1, soit vrai\n");
-        sb.append("j suite #jump à la suite\n");
+        sb.append("j suiteInf #jump à la suite\n");
         sb.append("sup: #v0>=0, soit opg>=opd (! opg<opd)\n");
         sb.append("li $v0, 0#v0 = 0, soit v0 = faux\n");
-        sb.append("suite: #v0 est soit vrai, soit faux\n");
+        sb.append("suiteInf: #v0 est soit vrai, soit faux\n");
 		return sb.toString();
 	}
 

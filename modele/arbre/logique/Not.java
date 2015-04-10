@@ -1,25 +1,23 @@
-package modele.arbre.mathematique;
+package modele.arbre.logique;
 
 import modele.arbre.Expression;
 
-public class MoinsUnaire extends Expression {
+public class Not extends Expression {
 
 	protected StringBuilder sb;
 	protected Expression e;
 	
-	public MoinsUnaire(Expression e) {
-		this.e = e;
+	public Not(Expression e) {
 		sb = new StringBuilder();
+		this.e = e;
 	}
 	
 	@Override
 	public String getCodeDecore() {
 		sb.append(e.getCodeDecore()+"\n");
-		sb.append("#MoinsUnaire\n");
+		sb.append("#Not\n");
 		sb.append("neg $v0, $v0\n");
 		return sb.toString();
 	}
-
-
 
 }

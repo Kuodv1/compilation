@@ -64,7 +64,7 @@ parser code {:
    case a String value, are listed on the next line down. */
 
 terminal Symbol    POINTVIRGULE, PAROUV, PARFER;
-terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, IDF, CSTE;
+terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, AND, OR, XOR, NOT, IDF, CSTE;
 
    
 /* Non terminals used in the grammar section.  
@@ -75,7 +75,7 @@ terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, IDF, CSTE;
 non terminal ArbreAbstrait PROG, INST, LINST;
 non terminal Expression EXPR;
 
-precedence left SUP, INF, EGA, DIFF;
+precedence left SUP, INF, EGA, DIFF, AND, OR, XOR, NOT;
 precedence left PLUS, MOINS;
 precedence left MULT, DIV;
 
@@ -142,6 +142,22 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          EXPR:e1 DIFF:o EXPR:e2
          {:
          	RESULT = new Different(e1,e2);
+         :} |
+         EXPR:e1 AND:o EXPR:e2
+         {:
+         	RESULT = new Et(e1,e2);
+         :} |
+         EXPR:e1 OR:o EXPR:e2
+         {:
+         	RESULT = new Ou(e1,e2);
+         :} |
+         EXPR:e1 XOR:o EXPR:e2
+         {:
+         	RESULT = new Xor(e1,e2);
+         :} |
+         NOT:o EXPR:e
+         {:
+         	RESULT = new Not(e);
          :} |
          PAROUV EXPR:e PARFER
          {:

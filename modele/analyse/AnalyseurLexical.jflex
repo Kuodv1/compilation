@@ -62,6 +62,10 @@ commentaireEtoileSlash = [*][/]
 <YYINITIAL>">"			{ return symbol(CodesLexicaux.SUP, yytext()) ;}
 <YYINITIAL>"<"			{ return symbol(CodesLexicaux.INF, yytext()) ;}
 <YYINITIAL>"!="			{ return symbol(CodesLexicaux.DIFF, yytext()) ;}
+<YYINITIAL>"&&"			{ return symbol(CodesLexicaux.AND, yytext()) ;}
+<YYINITIAL>"||"			{ return symbol(CodesLexicaux.OR, yytext()) ;}
+<YYINITIAL>"^"			{ return symbol(CodesLexicaux.XOR, yytext()) ;}
+<YYINITIAL>"!"			{ return symbol(CodesLexicaux.NOT, yytext()) ;}
 <YYINITIAL>"=="			{ return symbol(CodesLexicaux.EGA, yytext()) ;}
 
 
