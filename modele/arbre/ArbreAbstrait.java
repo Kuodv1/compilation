@@ -1,5 +1,10 @@
 package modele.arbre;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * ArbreAbstrait
  * Classe abstraite, afin de generer le code d execution correspondant au instruction passees par 
@@ -39,12 +44,12 @@ public abstract class ArbreAbstrait {
 	 * @param s
 	 */
 	public void writeFile(String s)
-	{/*
+	{
 	  try {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("fichierAssembleur.asm")));
 			
 		writer.write(".text \n"
-				+ " main \n:"
+				+ " main:\n"
 				+ "move $s7,$sp \n"
 	                        + s
 			        + "end :\n"
@@ -56,7 +61,7 @@ public abstract class ArbreAbstrait {
 	   catch (IOException e)
 	    {
 		e.printStackTrace();
-	    }*/
+	    }
 	}
 	/**
 	 * Fonction pour eviter les erreurs dans l analyseur Syntaxique.java
