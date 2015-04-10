@@ -5,6 +5,9 @@ import modele.arbre.OperateurBinaire;
 
 public class Egalite extends OperateurBinaire {
 	
+	/**
+	 * Constructeur Egalité
+	 */
 	public Egalite(Expression e1, Expression e2) {
 		super(e1,e2);
 		isBool = true;
@@ -12,6 +15,9 @@ public class Egalite extends OperateurBinaire {
 	
 	
 	@Override
+	/**
+	 * Retourne le code MIPS d'une égalité sous forme de chaîne de caratère
+	 */
 	public String getCodeDecore() {
  		sb.append(opg.getCodeDecore()+"\n");
 		sb.append("sw   $v0, 0($sp)\n");
