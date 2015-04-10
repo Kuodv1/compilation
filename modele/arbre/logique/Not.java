@@ -7,17 +7,25 @@ public class Not extends Expression {
 	protected StringBuilder sb;
 	protected Expression e;
 	
+	/**
+	 * Constructeur Not
+	 */
 	public Not(Expression e) {
 		sb = new StringBuilder();
 		this.e = e;
 		isBool = true;
 	}
-	
+	/**
+	 * Retourne un boolean qui vérifie la sémantique
+	 */
 	public boolean semantiqueCorrect() {
 		return (e.getIsBool()==isBool)&&e.semantiqueCorrect();
 	}
 	
 	@Override
+	/**
+	 * Retourne le code MIPS d'un non logique sous forme de chaîne caractère
+	 */
 	public String getCodeDecore() {
 		sb.append(e.getCodeDecore()+"\n");
 		
