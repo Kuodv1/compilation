@@ -2,6 +2,8 @@ package modele.analyse ;
 
 import java_cup.runtime.*;
 import modele.arbre.*;
+import modele.arbre.logique.*;
+import modele.arbre.mathematique.*;
       
 %%
    
@@ -57,6 +59,11 @@ commentaireEtoileSlash = [*][/]
 <YYINITIAL>"-"			{ return symbol(CodesLexicaux.MOINS, yytext()) ;}
 <YYINITIAL>"*"			{ return symbol(CodesLexicaux.MULT, yytext()) ;}
 <YYINITIAL>"/"			{ return symbol(CodesLexicaux.DIV, yytext()) ;}
+<YYINITIAL>">"			{ return symbol(CodesLexicaux.SUP, yytext()) ;}
+<YYINITIAL>"<"			{ return symbol(CodesLexicaux.INF, yytext()) ;}
+<YYINITIAL>"!="			{ return symbol(CodesLexicaux.DIFF, yytext()) ;}
+<YYINITIAL>"=="			{ return symbol(CodesLexicaux.EGA, yytext()) ;}
+
 
 
 

@@ -1,6 +1,8 @@
 package modele.analyse ;
 import java_cup.runtime.*;
 import modele.arbre.*;
+import modele.arbre.logique.*;
+import modele.arbre.mathematique.*;
  
 action code {: 
 
@@ -62,7 +64,7 @@ parser code {:
    case a String value, are listed on the next line down. */
 
 terminal Symbol    POINTVIRGULE, PAROUV, PARFER;
-terminal String    PLUS, MOINS, MULT, DIV, IDF, CSTE;
+terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, IDF, CSTE;
 
    
 /* Non terminals used in the grammar section.  
@@ -73,6 +75,7 @@ terminal String    PLUS, MOINS, MULT, DIV, IDF, CSTE;
 non terminal ArbreAbstrait PROG, INST, LINST;
 non terminal Expression EXPR;
 
+precedence left SUP, INF, EGA, DIFF;
 precedence left PLUS, MOINS;
 precedence left MULT, DIV;
 
@@ -123,6 +126,22 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          EXPR:e1 DIV:o EXPR:e2
          {:
 			RESULT = new Div(e1,e2);
+         :} |
+         EXPR:e1 SUP:o EXPR:e2
+         {:
+         	RESULT = new Superieure(e1,e2);
+         :} |
+         EXPR:e1 INF:o EXPR:e2
+         {:
+         	RESULT = new Inferieure(e1,e2);
+         :} |
+         EXPR:e1 EGA:o EXPR:e2
+         {:
+         	RESULT = new Egalite(e1,e2);
+         :} |
+         EXPR:e1 DIFF:o EXPR:e2
+         {:
+         	RESULT = new Different(e1,e2);
          :} |
          PAROUV EXPR:e PARFER
          {:

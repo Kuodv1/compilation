@@ -20,8 +20,8 @@ public class Superieure extends OperateurBinaire{
         sb.append("lw $t8, 4($sp)\n");	// t8 = première valeur de la pile
         
         sb.append("sub $v0,$v0,$t8 # v0 = v0-t8 ( soit opd - opg )\n");
-    	sb.append("bgez $v0, inf # si opd-opg>=0 allez à inf");//si v0-t8 >= 0, alors opg <= opd
-        sb.append("li $v0, 1 #v0 = 1, soit v0 = vrai, opG > opD\n");
+    	sb.append("bgez $v0, inf # si opd-opg>=0 allez à inf\n");//si v0-t8 >= 0, alors opg <= opd
+        sb.append("li $v0, 1#v0 = 1, soit vrai\n");
         sb.append("j suite #jump à la suite\n");
         sb.append("inf: #v0>=0, soit opg<=opd (! opg>opd)\n");
         sb.append("li $v0, 0#v0 = 0, soit v0 = faux\n");
