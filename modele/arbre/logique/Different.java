@@ -20,10 +20,8 @@ public class Different extends OperateurBinaire {
 			check = false;
 			sb = new StringBuilder();
 			StringBuilder err = new StringBuilder();
-			String type = "int";
-			if(this.isBool) type="bool";
 			err.append("Erreur de type : \nFormat attendus\n");
-			err.append(type+" "+this.signeToString()+" "+type+"\n");
+			err.append("bool == bool  OU int == int\n");
 			String type1 = "int";
 			String type2 = "int";
 			if(opg.getIsBool()) type1="bool";

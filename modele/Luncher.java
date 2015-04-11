@@ -11,7 +11,6 @@ public class Luncher {
 		InputOutput io = new InputOutput();
 		if(io.verifExt(filename)) {
 			String code = io.readFile(filename);
-			System.out.println(code);
 			try {
 				
 				AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
