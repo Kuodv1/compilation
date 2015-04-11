@@ -9,7 +9,7 @@ public class Div extends OperateurBinaire {
     /**
      * Constructeur Div
      */
-    public Div(Expression operande1, Expression operande2)throws OperandeDiffException{
+    public Div(Expression operande1, Expression operande2){
 	       	super(operande1,operande2,false,"/");
        	}
        	

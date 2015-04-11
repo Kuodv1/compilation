@@ -1,5 +1,6 @@
 package modele.arbre.logique;
 
+import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 
 public class Not extends Expression {
@@ -18,8 +19,25 @@ public class Not extends Expression {
 	/**
 	 * Retourne un boolean qui vérifie la sémantique
 	 */
-	public boolean semantiqueCorrect() {
-		return (e.getIsBool()==isBool)&&e.semantiqueCorrect();
+	public boolean semantiqueCorrect() throws OperandeDiffException {
+		boolean check = true;
+		if(! (e.getIsBool()==isBool)&&e.semantiqueCorrect()) {
+	   		check = false;
+    		sb = new StringBuilder();
+    		StringBuilder err = new StringBuilder();
+    		String type = "bool";
+    		err.append("Erreur de type : \nFormat attendus\n");
+    		err.append("!"+type+"\n");
+    		String type1="int";
+    		
+    		err.append("Format retrouvé :\n");
+    		err.append("!"+type1+"\n");
+    		err.append("Dans l'expression suivante :\n");
+    		err.append(this.toString());
+    			
+    		throw new OperandeDiffException(err.toString());
+    	}
+		return check;
 	}
 	
 	public String toString() {

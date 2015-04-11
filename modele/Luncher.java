@@ -11,7 +11,7 @@ public class Luncher {
 		InputOutput io = new InputOutput();
 		if(io.verifExt(filename)) {
 			String code = io.readFile(filename);
-			
+			System.out.println(code);
 			try {
 				
 				AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
@@ -19,8 +19,10 @@ public class Luncher {
 																new ByteArrayInputStream(code.getBytes())));
 			
 				ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
-				//System.out.println(arbre.getCodeDecore());
-				io.writeFile(arbre.getCodeDecore(),nameSortie);
+
+				if(arbre.semantiqueCorrect()) {
+					io.writeFile(arbre.getCodeDecore(),nameSortie);
+				}
 				
 				
 	

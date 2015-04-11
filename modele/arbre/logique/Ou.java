@@ -9,7 +9,7 @@ public class Ou extends OperateurBinaire {
 	/**
 	 * Constrcuteur Ou
 	 */
-	public Ou(Expression e1, Expression e2) throws OperandeDiffException{
+	public Ou(Expression e1, Expression e2) {
 		super(e1,e2,true,"||");
 	}
 

@@ -9,7 +9,7 @@ public class Et extends OperateurBinaire{
 	/**
 	 * Constructeur Et
 	 */
-	public Et(Expression e1, Expression e2) throws OperandeDiffException{
+	public Et(Expression e1, Expression e2) {
 		super(e1, e2,true,"&&");
 	}
 

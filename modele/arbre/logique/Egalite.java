@@ -9,13 +9,34 @@ public class Egalite extends OperateurBinaire {
 	/**
 	 * Constructeur Egalité
 	 */
-	public Egalite(Expression e1, Expression e2) throws OperandeDiffException{
+	public Egalite(Expression e1, Expression e2){
 		super(e1,e2,true,"==");
 	}
 	
 	
-	public boolean semantiqueCorrect() {
-		return (opg.getIsBool()==false)&&(opd.getIsBool()==false);
+	public boolean semantiqueCorrect() throws OperandeDiffException {
+		boolean check = true;
+		if(!((opg.getIsBool()==opd.getIsBool())&&opg.semantiqueCorrect()&&opd.semantiqueCorrect())) {
+			check = false;
+			sb = new StringBuilder();
+			StringBuilder err = new StringBuilder();
+			String type = "int";
+			if(this.isBool) type="bool";
+			err.append("Erreur de type : \nFormat attendus\n");
+			err.append(type+" "+this.signeToString()+" "+type+"\n");
+			String type1 = "int";
+			String type2 = "int";
+			if(opg.getIsBool()) type1="bool";
+			if(opd.getIsBool()) type2="bool";
+			
+			err.append("Format retrouvé :\n");
+			err.append(type1+" "+this.signeToString()+" "+type2+"\n");
+			err.append("Dans l'expression suivante :\n");
+			err.append(this.toString());
+				
+			throw new OperandeDiffException(err.toString());
+		}
+	return check;
 	}
 	
 	@Override

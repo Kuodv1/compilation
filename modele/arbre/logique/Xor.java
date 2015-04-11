@@ -9,7 +9,7 @@ public class Xor extends OperateurBinaire {
 	/**
 	 * Constructeur Xor
 	 */
-	public Xor(Expression e1, Expression e2) throws OperandeDiffException{
+	public Xor(Expression e1, Expression e2){
 		super(e1,e2,true,"^");
 	}
 

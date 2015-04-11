@@ -9,7 +9,7 @@ public class Moins extends OperateurBinaire {
     /**
      * Constrcuteur Moins
      */
-    public Moins(Expression operande1, Expression operande2)throws OperandeDiffException{
+    public Moins(Expression operande1, Expression operande2){
 	       	super(operande1,operande2,false,"-");
        	}
        	

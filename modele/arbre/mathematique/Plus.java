@@ -9,7 +9,7 @@ public class Plus extends OperateurBinaire {
     /**
      * Constrcuteur Plus
      */
-    public Plus(Expression operande1, Expression operande2)throws OperandeDiffException{
+    public Plus(Expression operande1, Expression operande2){
 	       	super(operande1,operande2,false,"+");
        	}
        	
