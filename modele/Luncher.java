@@ -18,12 +18,25 @@ public class Luncher {
 																new ByteArrayInputStream(code.getBytes())));
 			
 				ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
-
-				if(arbre.semantiqueCorrect()) {
+				
+				boolean err = false;
+				try {
+					arbre.semantiqueCorrect();
+				} catch (Exception e) {
+					e.printStackTrace();
+					err = true;
+				}
+				if(!err) {
 					io.writeFile(arbre.getCodeDecore(),nameSortie);
 				}
 				
-				
+				Entree e  = new Entree("varI",1,3);
+				Symbole s = new Symbole("int",false);
+				TDS tds = TDS.getInstance();
+				tds.ajouter(e, s);
+				if(tds.contains(e)) {
+					System.out.println(tds.identifier(e.toString()).toString());
+				}
 	
 			}catch (Exception e) {
 				//Erreur d ecriture de code (non reconnus par l analyseurSyntaxique)

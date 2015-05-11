@@ -32,7 +32,7 @@ public abstract class ArbreAbstrait {
 		return code;
 	}
 	
-	public abstract boolean semantiqueCorrect();
+	public abstract void semantiqueCorrect() throws Exception;
 	
 	
 	/**

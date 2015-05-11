@@ -29,14 +29,12 @@ public class BlocDinstructions extends ArbreAbstrait{
 		listeInstructions.add(instruction);
 	}
 
-	public boolean semantiqueCorrect() {
-		boolean err = false;
+	public void semantiqueCorrect() throws Exception {
 		int i = 0;
-		while(i<listeInstructions.size() && !err) {
-			err = listeInstructions.get(i).semantiqueCorrect();
+		while(i<listeInstructions.size()) {
+			listeInstructions.get(i).semantiqueCorrect();
 			i++;
 		}
-		return err;
 	}
 	
 	/**

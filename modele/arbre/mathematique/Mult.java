@@ -9,10 +9,19 @@ public class Mult extends OperateurBinaire {
     /**
      * Constructeur Mult
      */
-    public Mult(Expression operande1, Expression operande2){
-	       	super(operande1,operande2,false,"*");
+    public Mult(Expression operande1, Expression operande2, int ligne, int colonne){
+	       	super(operande1,operande2,false,"*", ligne, colonne);
        	}
        	
+    
+    public void semantiqueCorrect() throws OperandeDiffException {
+
+    	opg.semantiqueCorrect();
+    	opd.semantiqueCorrect();
+    	if(opg.isBool != opd.isBool) {
+    		throw new OperandeDiffException("OPERATION : MULTIPLICATION | ATTENDUS int "+symbole+" int",ligne,colonne);
+    	}
+    }
      
 	/**
 	 * Retourne le code MIPS d'une multiplication sous forme de chaîne caractère

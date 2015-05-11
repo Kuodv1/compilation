@@ -40,6 +40,8 @@ idf = {lettre}+
 
 bool = "vrai" | "faux"
 
+type = "entier" | "entier []"
+
 commentaireSlashSlash = [/][/].*\n
 commentaireSlashEtoile = [/][*]
 commentaireEtoileSlash = [*][/]

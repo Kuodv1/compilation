@@ -12,8 +12,9 @@ public abstract class OperateurBinaire extends Expression{
     /**
      * Constructeur OperateurBinaire
      **/
-    public OperateurBinaire(Expression opg,Expression opd, boolean isBool, String symbole) {
-	this.opg = opg;
+    public OperateurBinaire(Expression opg,Expression opd, boolean isBool, String symbole, int ligne, int colonne) {
+	super(ligne,colonne);
+    this.opg = opg;
 	this.opd = opd;
 	this.isBool=isBool;
 	this.symbole=symbole;
@@ -21,29 +22,6 @@ public abstract class OperateurBinaire extends Expression{
 
     }
 
-    public boolean semantiqueCorrect() throws OperandeDiffException {
-    	boolean check = true;
-    	if(!((opg.isBool==this.isBool)&&(opd.isBool==this.isBool)&&opg.semantiqueCorrect()&&opd.semantiqueCorrect())) {
-    		check = false;
-    		StringBuilder err = new StringBuilder();
-    		String type = "int";
-    		if(this.isBool) type="bool";
-    		err.append("Erreur de type : \nFormat attendus\n");
-    		err.append(type+" "+this.signeToString()+" "+type+"\n");
-    		String type1 = "int";
-    		String type2 = "int";
-    		if(opg.isBool) type1="bool";
-    		if(opd.isBool) type2="bool";
-    		
-    		err.append("Format retrouvé :\n");
-    		err.append(type1+" "+this.signeToString()+" "+type2+"\n");
-    		err.append("Dans l'expression suivante :\n");
-    		err.append(this.toString());
-    		throw new OperandeDiffException(err.toString());
-    	}
-    	return check;
-    }
-    
     public String signeToString() {
     	return symbole;
     }

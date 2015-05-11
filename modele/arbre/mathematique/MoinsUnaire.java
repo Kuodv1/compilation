@@ -11,7 +11,8 @@ public class MoinsUnaire extends Expression {
 	/**
 	 * Constrcuteur MoinsUnaire
 	 */
-	public MoinsUnaire(Expression e) {
+	public MoinsUnaire(Expression e, int ligne, int colonne) {
+		super(ligne,colonne);
 		this.e = e;
 		sb = new StringBuilder();
 		isBool = false;
@@ -20,25 +21,11 @@ public class MoinsUnaire extends Expression {
 	/**
 	 * Retourne un boolean qui vérifie la sémantique
 	 */
-	public boolean semantiqueCorrect() throws OperandeDiffException {
-		boolean check = true;
-		if(!((this.isBool==e.getIsBool())&&e.semantiqueCorrect())) {
-	   		check = false;
-    		sb = new StringBuilder();
-    		StringBuilder err = new StringBuilder();
-    		String type = "int";
-    		err.append("Erreur de type : \nFormat attendus\n");
-    		err.append("- "+type+"\n");
-    		String type1="bool";
-    		
-    		err.append("Format retrouvé :\n");
-    		err.append("- "+type1+"\n");
-    		err.append("Dans l'expression suivante :\n");
-    		err.append(this.toString());
-    			
-    		throw new OperandeDiffException(err.toString());
+	public void semantiqueCorrect() throws OperandeDiffException {
+    	e.semantiqueCorrect();
+    	if(e.isBool) {
+    		throw new OperandeDiffException("OPERATION : negatif | ATTENDUS - int",ligne,colonne);
     	}
-		return check;
 	}
 	
 	public String toString() {

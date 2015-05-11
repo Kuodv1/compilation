@@ -109,55 +109,55 @@ INST ::= EXPR:e
         
 EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          {:
-			RESULT = new Plus(e1,e2);
+			RESULT = new Plus(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 MOINS:o EXPR:e2
          {:
-			RESULT = new Moins(e1,e2);
+			RESULT = new Moins(e1,e2,e1left+1,e1right+1);
          :} |
          MOINS:o EXPR:e
          {:
-         	RESULT = new MoinsUnaire(e);
+         	RESULT = new MoinsUnaire(e,eleft+1,eright+1);
          :} |
          EXPR:e1 MULT:o EXPR:e2
          {:
-			RESULT = new Mult(e1,e2);
+			RESULT = new Mult(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 DIV:o EXPR:e2
          {:
-			RESULT = new Div(e1,e2);
+			RESULT = new Div(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 SUP:o EXPR:e2
          {:
-         	RESULT = new Superieure(e1,e2);
+         	RESULT = new Superieure(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 INF:o EXPR:e2
          {:
-         	RESULT = new Inferieure(e1,e2);
+         	RESULT = new Inferieure(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 EGA:o EXPR:e2
          {:
-         	RESULT = new Egalite(e1,e2);
+         	RESULT = new Egalite(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 DIFF:o EXPR:e2
          {:
-         	RESULT = new Different(e1,e2);
+         	RESULT = new Different(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 AND:o EXPR:e2
          {:
-         	RESULT = new Et(e1,e2);
+         	RESULT = new Et(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 OR:o EXPR:e2
          {:
-         	RESULT = new Ou(e1,e2);
+         	RESULT = new Ou(e1,e2,e1left+1,e1right+1);
          :} |
          EXPR:e1 XOR:o EXPR:e2
          {:
-         	RESULT = new Xor(e1,e2);
+         	RESULT = new Xor(e1,e2,e1left+1,e1right+1);
          :} |
          NOT:o EXPR:e
          {:
-         	RESULT = new Not(e);
+         	RESULT = new Not(e,eleft+1,eright+1);
          :} |
          PAROUV EXPR:e PARFER
          {:
@@ -165,10 +165,10 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          :} |
 		 CSTE:c 
 	     {:
-			RESULT = new Nombre(c);
+			RESULT = new Nombre(c,cleft+1,cright+1);
          :} |
          BOOL:t
          {:
-         	RESULT = new Booleen(t);
+         	RESULT = new Booleen(t,tleft+1,tright+1);
          :}
          ;

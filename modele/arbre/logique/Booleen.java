@@ -8,7 +8,8 @@ public class Booleen extends Expression {
 	/**
 	 * Constructeur Booleen
 	 */
-	public Booleen(String val) {
+	public Booleen(String val, int ligne, int colonne) {
+		super(ligne,colonne);
 		if(val.equals("faux")) bool = 0;
 		else bool = 1;
 		isBool = true;
@@ -18,8 +19,8 @@ public class Booleen extends Expression {
 	 * Retourne un booleen qui vérifie la sémantique
 	 * @return 
 	 */ 
-	public boolean semantiqueCorrect() {
-		return true;
+	public void semantiqueCorrect() {
+
 	}
 	
 	public String toString() {

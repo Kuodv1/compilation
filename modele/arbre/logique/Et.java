@@ -9,9 +9,17 @@ public class Et extends OperateurBinaire{
 	/**
 	 * Constructeur Et
 	 */
-	public Et(Expression e1, Expression e2) {
-		super(e1, e2,true,"&&");
+	public Et(Expression e1, Expression e2, int ligne, int colonne) {
+		super(e1, e2,true,"&&",ligne,colonne);
 	}
+	
+    public void semantiqueCorrect() throws OperandeDiffException {
+    	opg.semantiqueCorrect();
+    	opd.semantiqueCorrect();
+    	if(!opg.isBool || !opd.isBool) {
+    		throw new OperandeDiffException("OPERATION : "+symbole+" | ATTENDUS bool "+symbole+" bool",ligne,colonne);
+    	}
+    }
 
 	@Override
 	/**

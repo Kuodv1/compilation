@@ -9,7 +9,8 @@ public class Nombre extends Expression{
     /**
      * Constrcuteur Nombre
      */
-    public Nombre(String cste){
+    public Nombre(String cste, int ligne, int colonne){
+    super(ligne,colonne);
 	this.nbr = Integer.parseInt(cste);
 	isBool = false;
     }
@@ -17,8 +18,7 @@ public class Nombre extends Expression{
     /**
      * Retourne un booleen qui vérifie la semantique
      */
-    public boolean semantiqueCorrect() {
-    	return true;
+    public void semantiqueCorrect() {
     }
     
     /**

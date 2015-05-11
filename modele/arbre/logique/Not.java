@@ -11,7 +11,8 @@ public class Not extends Expression {
 	/**
 	 * Constructeur Not
 	 */
-	public Not(Expression e) {
+	public Not(Expression e,int ligne, int colonne) {
+		super(ligne,colonne);
 		sb = new StringBuilder();
 		this.e = e;
 		isBool = true;
@@ -19,25 +20,11 @@ public class Not extends Expression {
 	/**
 	 * Retourne un boolean qui vérifie la sémantique
 	 */
-	public boolean semantiqueCorrect() throws OperandeDiffException {
-		boolean check = true;
-		if(! (e.getIsBool()==isBool)&&e.semantiqueCorrect()) {
-	   		check = false;
-    		sb = new StringBuilder();
-    		StringBuilder err = new StringBuilder();
-    		String type = "bool";
-    		err.append("Erreur de type : \nFormat attendus\n");
-    		err.append("!"+type+"\n");
-    		String type1="int";
-    		
-    		err.append("Format retrouvé :\n");
-    		err.append("!"+type1+"\n");
-    		err.append("Dans l'expression suivante :\n");
-    		err.append(this.toString());
-    			
-    		throw new OperandeDiffException(err.toString());
+	public void semantiqueCorrect() throws OperandeDiffException {
+    	e.semantiqueCorrect();
+    	if(!e.isBool) {
+    		throw new OperandeDiffException("OPERATION : ! | Attendus !bool",ligne,colonne);
     	}
-		return check;
 	}
 	
 	public String toString() {
