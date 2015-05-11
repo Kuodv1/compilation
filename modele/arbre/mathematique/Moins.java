@@ -14,6 +14,10 @@ public class Moins extends OperateurBinaire {
        	}
        	
      
+    public String toString() {
+    	return opg.toString()+" - "+opd.toString();
+    }
+    
     public void semantiqueCorrect() throws OperandeDiffException {
 
     	opg.semantiqueCorrect();

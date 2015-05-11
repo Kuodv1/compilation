@@ -27,6 +27,7 @@ public class BlocDinstructions extends ArbreAbstrait{
 	 */
 	public void ajouter(ArbreAbstrait instruction) {
 		listeInstructions.add(instruction);
+		System.out.println("ajout : "+instruction.toString());
 	}
 
 	public void semantiqueCorrect() throws Exception {
@@ -63,5 +64,9 @@ public class BlocDinstructions extends ArbreAbstrait{
 	
 	public BlocDinstructions getBlocDinstructions(){
 		return this;
+	}
+	
+	public int size() {
+		return listeInstructions.size();
 	}
 }

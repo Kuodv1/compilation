@@ -46,6 +46,8 @@ commentaireSlashSlash = [/][/].*\n
 commentaireSlashEtoile = [/][*]
 commentaireEtoileSlash = [*][/]
 
+CSTECHAINE = \".*\"
+
 %%
 
 <YYINITIAL>";"                	{ return symbol(CodesLexicaux.POINTVIRGULE); }
@@ -54,11 +56,19 @@ commentaireEtoileSlash = [*][/]
 <YYINITIAL>{commentaireSlashEtoile} { yybegin(commentaire);}
 <commentaire>{commentaireEtoileSlash} { yybegin(YYINITIAL); }
 
+<YYINITIAL>"classe"			{ return symbol(CodesLexicaux.IDFCLASSE, yytext()); }
+<YYINITIAL>"lire"			{ return symbol(CodesLexicaux.IDFLIRE, yytext()); }
+<YYINITIAL>"ecrire"			{ return symbol(CodesLexicaux.IDFECRIRE, yytext()); }
+<YYINITIAL>"fin"			{ return symbol(CodesLexicaux.FIN, yytext()); }
+
+
 
 <YYINITIAL>"("			{ return symbol(CodesLexicaux.PAROUV, yytext()); }
 <YYINITIAL>{bool}			{ return symbol(CodesLexicaux.BOOL, yytext()) ; }
-
 <YYINITIAL>{idf}			{ return symbol(CodesLexicaux.IDF, yytext()) ; }
+<YYINITIAL>{type}			{ return symbol(CodesLexicaux.TYPE, yytext()) ; }
+<YYINITIAL>"publique"			{ return symbol(CodesLexicaux.PUBLIQUE, yytext()) ; }
+<YYINITIAL>"privee"			{ return symbol(CodesLexicaux.PRIVEE, yytext()) ; }
 <YYINITIAL>"+"			{ return symbol(CodesLexicaux.PLUS, yytext()) ;}
 <YYINITIAL>"-"			{ return symbol(CodesLexicaux.MOINS, yytext()) ;}
 <YYINITIAL>"*"			{ return symbol(CodesLexicaux.MULT, yytext()) ;}
@@ -70,14 +80,19 @@ commentaireEtoileSlash = [*][/]
 <YYINITIAL>"||"			{ return symbol(CodesLexicaux.OR, yytext()) ;}
 <YYINITIAL>"^"			{ return symbol(CodesLexicaux.XOR, yytext()) ;}
 <YYINITIAL>"!"			{ return symbol(CodesLexicaux.NOT, yytext()) ;}
-<YYINITIAL>"=="			{ return symbol(CodesLexicaux.EGA, yytext()) ;}
 
 
+<YYINITIAL>"="			{ return symbol(CodesLexicaux.EGALE, yytext()) ;}
+<YYINITIAL>"=="			{ return symbol(CodesLexicaux.EGALEEGALE, yytext()) ;}
+
+<YYINITIAL>	","		{ return symbol(CodesLexicaux.VIRGULE, yytext()); }
 
 
 <YYINITIAL>{nombre} 		{ return symbol(CodesLexicaux.CSTE, yytext()) ; }
 
 <YYINITIAL>")"			{ return symbol(CodesLexicaux.PARFER, yytext()); }
+
+<YYINITIAL>	{CSTECHAINE}	{return symbol(CodesLexicaux.CSTECHAINE, yytext()); }
 
 .                       {}
 \n                      {}

@@ -13,6 +13,10 @@ public class Plus extends OperateurBinaire {
 	       	super(operande1,operande2,false,"+",ligne,colonne);
        	}
      
+	public String toString() {
+		return opg.toString()+" + "+opd.toString();
+	}
+    
     public void semantiqueCorrect() throws OperandeDiffException {
 
     	opg.semantiqueCorrect();

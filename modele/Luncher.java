@@ -3,7 +3,11 @@ package modele;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 
+import java_cup.parser;
+
 import modele.arbre.ArbreAbstrait;
+import modele.arbre.BlocDinstructions;
+import modele.arbre.Ecrire;
 import modele.analyse.*;
 
 public class Luncher {
@@ -12,22 +16,34 @@ public class Luncher {
 		if(io.verifExt(filename)) {
 			String code = io.readFile(filename);
 			try {
-				
+			
 				AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
 														new AnalyseurLexical(
 																new ByteArrayInputStream(code.getBytes())));
-			
-				ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 				
+				/*AnalyseurLexical al = new AnalyseurLexical(new ByteArrayInputStream(code.getBytes()));
+				parser p = new parser(al);
+				p.parse();*/
+				try {
+					analyseur.parse();
+				} catch (Exception e) {
+					System.out.println("Erreur niveau parse()");
+					e.printStackTrace();
+				}
+				BlocDinstructions arbre = analyseur.getBlocDinstructions();
+				System.out.println(arbre.size());
+				System.out.println("couet");
 				boolean err = false;
 				try {
 					arbre.semantiqueCorrect();
 				} catch (Exception e) {
+					System.out.println("Erreur niveau semantiqueCorrect()");
 					e.printStackTrace();
 					err = true;
 				}
 				if(!err) {
-					io.writeFile(arbre.getCodeDecore(),nameSortie);
+					System.out.println(arbre.getCodeDecore());
+					//io.writeFile(arbre.getCodeDecore(),nameSortie);
 				}
 				
 				Entree e  = new Entree("varI",1,3);
@@ -37,6 +53,7 @@ public class Luncher {
 				if(tds.contains(e)) {
 					System.out.println(tds.identifier(e.toString()).toString());
 				}
+
 	
 			}catch (Exception e) {
 				//Erreur d ecriture de code (non reconnus par l analyseurSyntaxique)

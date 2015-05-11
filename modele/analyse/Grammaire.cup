@@ -1,11 +1,18 @@
-package modele.analyse ;
+package modele.analyse;
 import java_cup.runtime.*;
 import modele.arbre.*;
 import modele.arbre.logique.*;
 import modele.arbre.mathematique.*;
+import modele.arbre.BlocDinstructions;
  
 action code {: 
 
+	private BlocDinstructions li = new BlocDinstructions();
+	private boolean boolTmp = true;
+	
+	public  BlocDinstructions getBlocDinstructions(){
+		return li;
+	}
 
 :} ;
    
@@ -57,14 +64,20 @@ parser code {:
         //report_error(message, info);
         //System.exit(1);
     }
+    
+    public  BlocDinstructions getBlocDinstructions(){
+    	return action_obj.getBlocDinstructions();
+    }
+
 :};
 /* ------------Declaration of Terminals and Non Terminals Section----------- */
 /* Terminals (tokens returned by the scanner).  
    Terminals that have no value are listed first and then terminals that do have a value, in this 
    case a String value, are listed on the next line down. */
 
-terminal Symbol    POINTVIRGULE, PAROUV, PARFER;
-terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, AND, OR, XOR, NOT, IDF, CSTE, BOOL;
+terminal Symbol    POINTVIRGULE, VIRGULE, PAROUV, PARFER;
+terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGALEEGALE,EGALE, DIFF, AND, OR, XOR, NOT, IDF, CSTE, BOOL, IDFCLASSE, FIN, CSTECHAINE, PUBLIQUE, PRIVEE, TYPE;
+terminal String		IDFLIRE,IDFECRIRE;
 
    
 /* Non terminals used in the grammar section.  
@@ -72,39 +85,105 @@ terminal String    PLUS, MOINS, MULT, DIV, SUP, INF, EGA, DIFF, AND, OR, XOR, NO
    integer value are listed.  An object value means that it can be any type, it isn't set to a 
    specific type.  So it could be an Integer or a String or whatever. */
 
-non terminal ArbreAbstrait PROG, INST, LINST;
+non terminal ArbreAbstrait SYSTEME, CLASSE;
+non terminal Instruction LIRE,ECRIRE,DECLARATION, AUTRE_DECL, DECL_CHAMP, DECL_CONST, AFFECT;
 non terminal Expression EXPR;
+non terminal String STATUT;
 
-precedence left SUP, INF, EGA, DIFF, AND, OR, XOR, NOT;
+precedence left SUP, INF, EGALEEGALE, DIFF, AND, OR, XOR, NOT;
 precedence left PLUS, MOINS;
 precedence left MULT, DIV;
 
 /* ----------------------------Grammar Section-------------------- */
 
-start with PROG ;
+start with SYSTEME;
 
-PROG	::=	LINST:li
-		{: RESULT = li; :}
-		;
+SYSTEME	::=	CLASSE;
 
-LINST	::=	LINST:li INST:i
-		{: 
-		   li.ajouter(i);
-		   RESULT = li;
+CLASSE ::= IDFCLASSE:idfc IDF DECLARATION FIN
+		{:
+			li.ajouter(new FermerBloc(idfcleft+1,idfcright+1));
+		:}| IDFCLASSE:idfc IDF FIN
+		{:
+			li.ajouter(new FermerBloc(idfcleft+1,idfcright+1));
+		:};
+
+DECLARATION ::= DECLARATION DECL_CHAMP:dc
+				{:
+					li.ajouter(new OuvrirBloc(dcleft+1,dcright+1));
+				:}
+				| DECL_CHAMP:dc
+				{:
+					
+				:}
+				| DECLARATION DECL_CONST:dc
+				{:
+					li.ajouter(new OuvrirBloc(dcleft+1,dcright+1));
+					li.ajouter(dc);
+				:}
+				| DECL_CONST:dc
+				{:
+					li.ajouter(dc);
+				:};
+				
+AUTRE_DECL ::= VIRGULE IDF:idf
+			{:
+				li.ajouter(new Declaration(idf,false,idfleft+1,idfright+1));
+			:}
+			|AUTRE_DECL VIRGULE IDF:idf
+			{:
+				li.ajouter(new Declaration(idf,false, idfleft+1, idfright+1));
+			:};
+				
+DECL_CHAMP ::= STATUT:s TYPE:t IDF:idf POINTVIRGULE
+			{:
+				li.ajouter(new Declaration(idf,boolTmp,idfleft+1, idfright+1));
+			:}
+			| STATUT:s TYPE:t IDF:idf AUTRE_DECL POINTVIRGULE
+			{:
+				li.ajouter(new Declaration(idf,boolTmp,idfleft+1, idfright+1));
+			:};
+
+STATUT ::= PUBLIQUE
+			{:
+				boolTmp = false;
+			:}
+			| PRIVEE
+			{:
+				boolTmp = true;
+			:};
+				
+DECL_CONST ::= AFFECT:a
+			{:
+				RESULT = a;
+			:}
+			| LIRE:l
+			{:
+				RESULT = l;
+			:}
+			| ECRIRE:e
+			{:
+				RESULT = e;
+			:};
+			
+AFFECT ::= IDF:i EGALE EXPR:e POINTVIRGULE
+			{:
+				RESULT = new Affectation(i,e,ileft+1,iright+1);
+			:};
+			
+LIRE ::= IDFLIRE IDF:idf POINTVIRGULE
+		{:
+			RESULT = new Lire(idf,idfleft+1,idfright+1);
+		:};
+
+ECRIRE ::= IDFECRIRE EXPR:e POINTVIRGULE
+		{:
+			RESULT = new EcrireExpression(e,eleft+1,eright+1);
 		:}
-	|	INST:i
-		{: 
-			BlocDinstructions li = new BlocDinstructions();
-			li.ajouter(i);
-		  	 RESULT = li;
-		:}
-		;
-
-INST ::= EXPR:e
-		 {: 
-			RESULT = e;
-		 :} 
-		 ;
+		| IDFECRIRE CSTECHAINE:chaine POINTVIRGULE
+		{:
+			RESULT = new Ecrire(chaine,chaineleft+1,chaineright+1);
+		:};
 
         
 EXPR ::= EXPR:e1 PLUS:o EXPR:e2
@@ -135,7 +214,7 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          {:
          	RESULT = new Inferieure(e1,e2,e1left+1,e1right+1);
          :} |
-         EXPR:e1 EGA:o EXPR:e2
+         EXPR:e1 EGALEEGALE:o EXPR:e2
          {:
          	RESULT = new Egalite(e1,e2,e1left+1,e1right+1);
          :} |
@@ -154,7 +233,7 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          EXPR:e1 XOR:o EXPR:e2
          {:
          	RESULT = new Xor(e1,e2,e1left+1,e1right+1);
-         :} |
+         :}|
          NOT:o EXPR:e
          {:
          	RESULT = new Not(e,eleft+1,eright+1);

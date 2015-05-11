@@ -13,6 +13,10 @@ public class Et extends OperateurBinaire{
 		super(e1, e2,true,"&&",ligne,colonne);
 	}
 	
+	public String toString() {
+		return opg.toString()+ " && "+opd.toString();
+	}
+	
     public void semantiqueCorrect() throws OperandeDiffException {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
