@@ -40,13 +40,13 @@ idf = {lettre}+
 
 bool = "vrai" | "faux"
 
-type = "entier" | "entier []"
+type = "entier"
 
 commentaireSlashSlash = [/][/].*\n
 commentaireSlashEtoile = [/][*]
 commentaireEtoileSlash = [*][/]
 
-CSTECHAINE = \".*\"
+csteChaine = \".*\"
 
 %%
 
@@ -61,14 +61,13 @@ CSTECHAINE = \".*\"
 <YYINITIAL>"ecrire"			{ return symbol(CodesLexicaux.IDFECRIRE, yytext()); }
 <YYINITIAL>"fin"			{ return symbol(CodesLexicaux.FIN, yytext()); }
 
-
+<YYINITIAL>"publique"			{ return symbol(CodesLexicaux.PUBLIQUE, yytext()) ; }
+<YYINITIAL>"privee"			{ return symbol(CodesLexicaux.PRIVEE, yytext()) ; }
 
 <YYINITIAL>"("			{ return symbol(CodesLexicaux.PAROUV, yytext()); }
 <YYINITIAL>{bool}			{ return symbol(CodesLexicaux.BOOL, yytext()) ; }
-<YYINITIAL>{idf}			{ return symbol(CodesLexicaux.IDF, yytext()) ; }
 <YYINITIAL>{type}			{ return symbol(CodesLexicaux.TYPE, yytext()) ; }
-<YYINITIAL>"publique"			{ return symbol(CodesLexicaux.PUBLIQUE, yytext()) ; }
-<YYINITIAL>"privee"			{ return symbol(CodesLexicaux.PRIVEE, yytext()) ; }
+<YYINITIAL>{idf}			{ return symbol(CodesLexicaux.IDF, yytext()) ; }
 <YYINITIAL>"+"			{ return symbol(CodesLexicaux.PLUS, yytext()) ;}
 <YYINITIAL>"-"			{ return symbol(CodesLexicaux.MOINS, yytext()) ;}
 <YYINITIAL>"*"			{ return symbol(CodesLexicaux.MULT, yytext()) ;}
@@ -92,7 +91,7 @@ CSTECHAINE = \".*\"
 
 <YYINITIAL>")"			{ return symbol(CodesLexicaux.PARFER, yytext()); }
 
-<YYINITIAL>	{CSTECHAINE}	{return symbol(CodesLexicaux.CSTECHAINE, yytext()); }
+<YYINITIAL>	{csteChaine}	{return symbol(CodesLexicaux.CSTECHAINE, yytext()); }
 
 .                       {}
 \n                      {}

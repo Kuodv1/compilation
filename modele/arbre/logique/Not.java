@@ -1,5 +1,6 @@
 package modele.arbre.logique;
 
+import modele.Type;
 import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 
@@ -16,6 +17,7 @@ public class Not extends Expression {
 		sb = new StringBuilder();
 		this.e = e;
 		isBool = true;
+		type = new Type("boolean");
 	}
 	/**
 	 * Retourne un boolean qui vérifie la sémantique

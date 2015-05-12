@@ -12,12 +12,14 @@ import java.util.ArrayList;
 public class BlocDinstructions extends ArbreAbstrait{
 
 	protected ArrayList<ArbreAbstrait> listeInstructions;
+	protected int jump;
 	
 	/**
 	 * Instanciation du bloc
 	 */
 	public BlocDinstructions() {
 		super();
+		jump = 0;
 		listeInstructions = new ArrayList<ArbreAbstrait>();
 	}
 	
@@ -44,14 +46,19 @@ public class BlocDinstructions extends ArbreAbstrait{
 	 */
 	public String getCodeDecore() {
 		StringBuilder sb = new StringBuilder();
+		
+		sb.append(".text \n"
+				+ " main:\n"
+				+ "move $s7,$sp \n");
+	    
 		for(int i = 0; i<listeInstructions.size();i++) {
 			sb.append(listeInstructions.get(i).getCodeDecore());
 			sb.append("\n");
 		}
-		sb.append("move $v1,$v0\n");
-		sb.append("li $v0 , 1 	# $v0 <- 1 (code du print entier)\n");
-		sb.append("move $a0,$v1 	# $a0 <- i (valeur à afficher)\n");
-		sb.append("syscall 	# afficher\n");
+
+		sb.append("end :\n"
+		 	 + "li $v0, 10\n"
+			 + "syscall ");
 		return sb.toString();
 	}
 
@@ -60,6 +67,14 @@ public class BlocDinstructions extends ArbreAbstrait{
 	 */
 	public String toString() {
 		return listeInstructions.toString();
+	}
+	
+	public int getJump() {
+		return jump;
+	}
+	
+	public void increJump() {
+		jump++;
 	}
 	
 	public BlocDinstructions getBlocDinstructions(){

@@ -31,7 +31,7 @@ public class Luncher {
 					e.printStackTrace();
 				}
 				BlocDinstructions arbre = analyseur.getBlocDinstructions();
-				System.out.println(arbre.size());
+
 				System.out.println("couet");
 				boolean err = false;
 				try {
@@ -42,17 +42,17 @@ public class Luncher {
 					err = true;
 				}
 				if(!err) {
-					System.out.println(arbre.getCodeDecore());
-					//io.writeFile(arbre.getCodeDecore(),nameSortie);
+					//System.out.println(arbre.getCodeDecore());
+					io.writeFile(arbre.getCodeDecore(),nameSortie);
 				}
 				
-				Entree e  = new Entree("varI",1,3);
+				/*Entree e  = new Entree("varI",1,3);
 				Symbole s = new Symbole("int",false);
 				TDS tds = TDS.getInstance();
 				tds.ajouter(e, s);
 				if(tds.contains(e)) {
 					System.out.println(tds.identifier(e.toString()).toString());
-				}
+				}*/
 
 	
 			}catch (Exception e) {

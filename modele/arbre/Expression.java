@@ -1,8 +1,12 @@
 package modele.arbre;
+
+import modele.Type;
+
 public abstract class Expression extends Instruction {
 		
 		public boolean isBool;
-	
+		public Type type;
+		
 		public Expression(int ligne, int colonne) {
 			super(ligne,colonne);
 		}
@@ -22,5 +26,9 @@ public abstract class Expression extends Instruction {
 		}
 		public int nbOperateurs() {
 			return 1;
+		}
+		
+		public Type getType() {
+			return type;
 		}
 }

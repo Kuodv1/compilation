@@ -22,6 +22,8 @@ public class TDS {
 			throw new DoubleDeclarationException(e.getEntree(),e.ligne,e.colonne);
 		} else {
 			dictionnaire.put(e.toString(), s);
+			s.setDeplacement(compteur);
+			compteur+=4;
 		}
 	}
 	

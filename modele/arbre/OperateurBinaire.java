@@ -1,5 +1,6 @@
 package modele.arbre;
 
+import modele.Type;
 import modele.analyse.exception.OperandeDiffException;
 
 public abstract class OperateurBinaire extends Expression{
@@ -16,6 +17,8 @@ public abstract class OperateurBinaire extends Expression{
 	super(ligne,colonne);
     this.opg = opg;
 	this.opd = opd;
+	if(isBool) type = new Type("boolean");
+	else type = new Type("entier");
 	this.isBool=isBool;
 	this.symbole=symbole;
 	sb = new StringBuilder();

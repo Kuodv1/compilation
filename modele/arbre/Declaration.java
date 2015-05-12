@@ -30,7 +30,9 @@ public class Declaration extends Instruction{
 	}
 	
 	public void semantiqueCorrect() throws DoubleDeclarationException {
-		throw new DoubleDeclarationException(e.toString(),ligne,colonne);
+		if(doubleDecl) {
+			throw new DoubleDeclarationException(e.toString(),ligne,colonne);
+		}
 	}
 
 }

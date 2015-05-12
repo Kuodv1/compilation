@@ -1,5 +1,6 @@
 package modele.arbre.mathematique;
 
+import modele.Type;
 import modele.arbre.Expression;
 
 public class Nombre extends Expression{
@@ -13,6 +14,7 @@ public class Nombre extends Expression{
     super(ligne,colonne);
 	this.nbr = Integer.parseInt(cste);
 	isBool = false;
+	type = new Type("entier");
     }
     
     /**

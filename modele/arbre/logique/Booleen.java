@@ -1,5 +1,6 @@
 package modele.arbre.logique;
 
+import modele.Type;
 import modele.arbre.Expression;
 
 public class Booleen extends Expression {
@@ -13,6 +14,7 @@ public class Booleen extends Expression {
 		if(val.equals("faux")) bool = 0;
 		else bool = 1;
 		isBool = true;
+		type = new Type("boolean");
 	}
 	
 	/**

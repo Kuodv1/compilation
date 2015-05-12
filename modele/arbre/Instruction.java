@@ -17,8 +17,7 @@ public class Instruction extends ArbreAbstrait{
 
 	@Override
 	public String getCodeDecore() {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 	
 	public int getLigne(){

@@ -61,14 +61,7 @@ public void writeFile(String s,String nameSortie)
   try {
 	BufferedWriter writer = new BufferedWriter(new FileWriter(new File(nameSortie+".asm")));
 		
-	writer.write(".text \n"
-			+ " main:\n"
-			+ "move $s7,$sp \n"
-                        + s
-		        + "end :\n"
-			+ "li $v0, 10\n"
-			+ "syscall ");
-		 
+	writer.write(s);
 	writer.close();
      }
    catch (IOException e)

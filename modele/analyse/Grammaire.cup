@@ -110,22 +110,30 @@ CLASSE ::= IDFCLASSE:idfc IDF DECLARATION FIN
 
 DECLARATION ::= DECLARATION DECL_CHAMP:dc
 				{:
-					li.ajouter(new OuvrirBloc(dcleft+1,dcright+1));
 				:}
 				| DECL_CHAMP:dc
 				{:
-					
+					li.ajouter(new OuvrirBloc(dcleft+1,dcright+1));
 				:}
 				| DECLARATION DECL_CONST:dc
 				{:
-					li.ajouter(new OuvrirBloc(dcleft+1,dcright+1));
 					li.ajouter(dc);
 				:}
 				| DECL_CONST:dc
 				{:
+					li.ajouter(new OuvrirBloc(dcleft+1,dcright+1));
 					li.ajouter(dc);
 				:};
 				
+DECL_CHAMP ::= STATUT TYPE:t IDF:idf POINTVIRGULE
+			{:
+				li.ajouter(new Declaration(idf,boolTmp,idfleft+1, idfright+1));
+			:}
+			| STATUT TYPE:t IDF:idf AUTRE_DECL POINTVIRGULE
+			{:
+				li.ajouter(new Declaration(idf,boolTmp,idfleft+1, idfright+1));
+			:};
+
 AUTRE_DECL ::= VIRGULE IDF:idf
 			{:
 				li.ajouter(new Declaration(idf,false,idfleft+1,idfright+1));
@@ -134,25 +142,19 @@ AUTRE_DECL ::= VIRGULE IDF:idf
 			{:
 				li.ajouter(new Declaration(idf,false, idfleft+1, idfright+1));
 			:};
-				
-DECL_CHAMP ::= STATUT:s TYPE:t IDF:idf POINTVIRGULE
-			{:
-				li.ajouter(new Declaration(idf,boolTmp,idfleft+1, idfright+1));
-			:}
-			| STATUT:s TYPE:t IDF:idf AUTRE_DECL POINTVIRGULE
-			{:
-				li.ajouter(new Declaration(idf,boolTmp,idfleft+1, idfright+1));
-			:};
 
 STATUT ::= PUBLIQUE
 			{:
+				System.out.println("public");
 				boolTmp = false;
+				
 			:}
 			| PRIVEE
 			{:
+				System.out.println("private");
 				boolTmp = true;
 			:};
-				
+
 DECL_CONST ::= AFFECT:a
 			{:
 				RESULT = a;
@@ -182,7 +184,8 @@ ECRIRE ::= IDFECRIRE EXPR:e POINTVIRGULE
 		:}
 		| IDFECRIRE CSTECHAINE:chaine POINTVIRGULE
 		{:
-			RESULT = new Ecrire(chaine,chaineleft+1,chaineright+1);
+			li.increJump();
+			RESULT = new Ecrire(chaine,li.getJump(),chaineleft+1,chaineright+1);
 		:};
 
         
@@ -249,5 +252,9 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          BOOL:t
          {:
          	RESULT = new Booleen(t,tleft+1,tright+1);
+         :} |
+         IDF:idf
+         {:
+         	RESULT = new Variable(idf,idfleft+1,idfright+1);
          :}
          ;

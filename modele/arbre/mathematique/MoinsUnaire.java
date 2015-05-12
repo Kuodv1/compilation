@@ -1,5 +1,6 @@
 package modele.arbre.mathematique;
 
+import modele.Type;
 import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 
@@ -16,6 +17,7 @@ public class MoinsUnaire extends Expression {
 		this.e = e;
 		sb = new StringBuilder();
 		isBool = false;
+		type = new Type("entier");
 	}
 	
 	/**
