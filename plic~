@@ -1,0 +1,63 @@
+#! /bin/bash
+
+export MARSPATH=/opt/depot/compilation/Mars4_5.jar
+#Verification du nombre de parametre
+if [ $# -ne 2 ]
+then
+  echo "Erreur : nombre de parametre incorrect"
+  exit 1
+fi
+
+#Verification du premier argument
+if [ -f $1 ]
+then
+ if [ -e $1 ]
+ then
+ vide=0
+ else
+  echo "Erreur 1er args : fichier inexistant"
+  exit 1
+  fi
+else
+echo "Erreur 1er args : ce fichier n'est pas un fichier"
+exit 1
+fi
+ 
+
+#Verification du deuxieme argument
+#if [ -f $2 ]
+#then
+# if [ -e $2 ]
+# then
+# vide=0
+# else
+#  echo "Erreur 2eme args : fichier inexistant"
+#  exit 1
+#  fi
+#else
+#echo "Erreur 2eme args : ce fichier n'est pas un fichier"
+#exit 1
+#fi
+
+#On execute le fichier plic
+fichierSortie="$1"
+java -jar $2 $1 $fichierSortie
+
+#On deplace le fichier asm dans le repertoire tmp
+test="$1.asm"
+if [ -e $test ]
+then
+mv $test /tmp/$test
+else
+exit 1
+fi
+fichierasm="/tmp/$test"
+
+#Execution du fichier asm avec MARS
+if [ -e $fichierasm ]
+then
+java -jar $MARSPATH $fichierasm
+else
+exit 1
+fi
+exit 0
