@@ -22,7 +22,7 @@ public class Ou extends OperateurBinaire {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(!opg.isBool || !opd.isBool) {
-    		new OperandeDiffException("OU | ATTENDUS : bool "+symbole+" bool",ligne,colonne);
+    		new OperandeDiffException("OU | ATTENDUS bool "+symbole+" bool",ligne,colonne);
     	}
     }
 	

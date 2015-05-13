@@ -24,7 +24,7 @@ public class Div extends OperateurBinaire {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool || opd.isBool) {
-    		new OperandeDiffException("DIVISION | ATTENDUS : int "+symbole+" int",ligne,colonne);
+    		new OperandeDiffException("DIVISION | ATTENDUS int "+symbole+" int",ligne,colonne);
     		
     	}
     	

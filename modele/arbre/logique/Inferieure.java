@@ -22,7 +22,7 @@ public class Inferieure extends OperateurBinaire{
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool || opd.isBool) {
-    		new OperandeDiffException("INFERIEURE | ATTENDUS : int "+symbole+" int",ligne,colonne);
+    		new OperandeDiffException("INFERIEURE | ATTENDUS int "+symbole+" int",ligne,colonne);
     	}
 	}
 	@Override

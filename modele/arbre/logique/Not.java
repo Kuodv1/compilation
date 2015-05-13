@@ -26,7 +26,7 @@ public class Not extends Expression {
 	public void semantiqueCorrect(){
     	e.semantiqueCorrect();
     	if(!e.isBool) {
-    		new OperandeDiffException("NOT | ATTENDUS : !bool",ligne,colonne);
+    		new OperandeDiffException("NOT | ATTENDUS !bool",ligne,colonne);
     	}
 	}
 	

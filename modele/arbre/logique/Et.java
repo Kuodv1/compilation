@@ -22,7 +22,7 @@ public class Et extends OperateurBinaire{
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(!opg.isBool || !opd.isBool) {
-    		new OperandeDiffException("ET | ATTENDUS : bool "+symbole+" bool",ligne,colonne);
+    		new OperandeDiffException("ET | ATTENDUS bool "+symbole+" bool",ligne,colonne);
     	}
     }
 

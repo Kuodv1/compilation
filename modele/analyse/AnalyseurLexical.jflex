@@ -4,6 +4,7 @@ import java_cup.runtime.*;
 import modele.arbre.*;
 import modele.arbre.logique.*;
 import modele.arbre.mathematique.*;
+import modele.analyse.exception.ErreurLexicaleException;
       
 %%
    
@@ -92,6 +93,6 @@ csteChaine = \".*\"
 <YYINITIAL>")"			{ return symbol(CodesLexicaux.PARFER, yytext()); }
 
 <YYINITIAL>	{csteChaine}	{return symbol(CodesLexicaux.CSTECHAINE, yytext()); }
-
-.                       {}
 \n                      {}
+" "						{}
+.                       {throw new ErreurLexicaleException(yytext()+" non reconnus",yyline+1,yycolumn);}

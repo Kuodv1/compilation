@@ -27,7 +27,7 @@ public class MoinsUnaire extends Expression {
 	public void semantiqueCorrect() {
     	e.semantiqueCorrect();
     	if(e.isBool) {
-    		new OperandeDiffException("MOINS_UNAIRE | ATTENDUS : - int",ligne,colonne);
+    		new OperandeDiffException("MOINS_UNAIRE | ATTENDUS - int",ligne,colonne);
     	}
 	}
 	

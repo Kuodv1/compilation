@@ -22,7 +22,7 @@ public class Superieure extends OperateurBinaire{
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool || opd.isBool) {
-    		new OperandeDiffException("SUPERIEURE | ATTENDUS : int "+symbole+" int",ligne,colonne);
+    		new OperandeDiffException("SUPERIEURE | ATTENDUS int "+symbole+" int",ligne,colonne);
     	}
 	}
 

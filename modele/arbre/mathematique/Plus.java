@@ -23,7 +23,7 @@ public class Plus extends OperateurBinaire {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool || opd.isBool) {
-    		new OperandeDiffException("ADDITION | ATTENDUS : int "+symbole+" int",ligne,colonne);
+    		new OperandeDiffException("ADDITION | ATTENDUS int "+symbole+" int",ligne,colonne);
     	}
     }
     

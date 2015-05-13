@@ -23,7 +23,7 @@ public class Different extends OperateurBinaire {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool != opd.isBool) {
-    		new OperandeDiffException("DIFFERENT | ATTENDUS : int "+symbole+" int  OU  bool "+symbole+" bool",ligne,colonne);
+    		new OperandeDiffException("DIFFERENT | ATTENDUS int "+symbole+" int  OU  bool "+symbole+" bool",ligne,colonne);
     	}
     }
 	

@@ -22,7 +22,7 @@ public class Egalite extends OperateurBinaire {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool != opd.isBool) {
-    		new OperandeDiffException("EGALITE | ATTENDUS : int "+symbole+" int  OU  bool "+symbole+" bool ",ligne,colonne);
+    		new OperandeDiffException("EGALITE | ATTENDUS int "+symbole+" int  OU  bool "+symbole+" bool ",ligne,colonne);
     	}
     }
 	

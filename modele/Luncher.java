@@ -40,9 +40,9 @@ public class Luncher {
 				if(!err) {
 					System.out.println("COMPILATION OK\n");
 					io.writeFile(arbre.getCodeDecore(),nameSortie);
-				} else {
+				} /*else {
 					System.out.println("COMPILATION ABBANDONNEE\n");
-				}
+				}*/
 		}else{
 			System.out.println("Arrêt du programme. Fichier avec mauvaise extension et/ou n'existe pas.\n");
 		}

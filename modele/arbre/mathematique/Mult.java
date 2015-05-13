@@ -24,7 +24,7 @@ public class Mult extends OperateurBinaire {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool || opd.isBool) {
-    		new OperandeDiffException("MULTIPLICATION | ATTENDUS : int "+symbole+" int",ligne,colonne);
+    		new OperandeDiffException("MULTIPLICATION | ATTENDUS int "+symbole+" int",ligne,colonne);
     	}
     }
      
