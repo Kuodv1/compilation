@@ -47,7 +47,7 @@ commentaireSlashSlash = [/][/].*\n
 commentaireSlashEtoile = [/][*]
 commentaireEtoileSlash = [*][/]
 
-csteChaine = \".*\"
+csteChaine = [\"]([^\"]+ | [\"][\"]([^\"]*)[\"][\"])+[\"]
 
 %%
 
