@@ -11,11 +11,11 @@ public class Et extends OperateurBinaire{
 	 * Constructeur Et
 	 */
 	public Et(Expression e1, Expression e2, int ligne, int colonne) {
-		super(e1, e2,true,"&&",ligne,colonne);
+		super(e1, e2,true,"*",ligne,colonne);
 	}
 	
 	public String toString() {
-		return opg.toString()+ " && "+opd.toString();
+		return opg.toString()+ " * "+opd.toString();
 	}
 	
     public void semantiqueCorrect()  {

@@ -188,11 +188,19 @@ ECRIRE ::= IDFECRIRE EXPR:e POINTVIRGULE
         
 EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          {:
-			RESULT = new Plus(e1,e2,e1left+1,e1right+1);
+         	if(!e1.getIsBool()) {
+				RESULT = new Plus(e1,e2,e1left+1,e1right+1);
+			} else {
+				RESULT = new Ou(e1,e2,e1left+1,e1right+1);
+			}
          :} |
          EXPR:e1 MOINS:o EXPR:e2
          {:
-			RESULT = new Moins(e1,e2,e1left+1,e1right+1);
+         	if(!e1.getIsBool()) {
+				RESULT = new Moins(e1,e2,e1left+1,e1right+1);
+			} else {
+				RESULT = new Xor(e1,e2,e1left+1,e1right+1);
+			}
          :} |
          MOINS:o EXPR:e
          {:
@@ -200,7 +208,11 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          :} |
          EXPR:e1 MULT:o EXPR:e2
          {:
-			RESULT = new Mult(e1,e2,e1left+1,e1right+1);
+         	if(!e1.getIsBool()) {
+				RESULT = new Mult(e1,e2,e1left+1,e1right+1);
+			} else {
+				RESULT = new Et(e1,e2,e1left+1,e1right+1);
+			}
          :} |
          EXPR:e1 DIV:o EXPR:e2
          {:
@@ -222,18 +234,6 @@ EXPR ::= EXPR:e1 PLUS:o EXPR:e2
          {:
          	RESULT = new Different(e1,e2,e1left+1,e1right+1);
          :} |
-         EXPR:e1 AND:o EXPR:e2
-         {:
-         	RESULT = new Et(e1,e2,e1left+1,e1right+1);
-         :} |
-         EXPR:e1 OR:o EXPR:e2
-         {:
-         	RESULT = new Ou(e1,e2,e1left+1,e1right+1);
-         :} |
-         EXPR:e1 XOR:o EXPR:e2
-         {:
-         	RESULT = new Xor(e1,e2,e1left+1,e1right+1);
-         :}|
          NOT:o EXPR:e
          {:
          	RESULT = new Not(e,eleft+1,eright+1);
