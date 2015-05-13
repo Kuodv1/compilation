@@ -1,7 +1,7 @@
 package modele.analyse.exception;
 
-public class MauvaiseAffectationException extends RuntimeException{
+public class MauvaiseAffectationException extends ErreurSemantiqueException{
 	public MauvaiseAffectationException(String message,int ligne, int colonne) {
-		super("MAUVAISE AFFECTATION : Ligne : "+ligne+" Colonne : "+colonne+"\n"+message);
+		super("MAUVAISE AFFECTATION : "+message,ligne,colonne);
 	}
 }

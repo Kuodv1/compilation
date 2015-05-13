@@ -4,6 +4,7 @@ import modele.arbre.*;
 import modele.arbre.logique.*;
 import modele.arbre.mathematique.*;
 import modele.arbre.BlocDinstructions;
+import modele.analyse.exception.*;
  
 action code {: 
 
@@ -20,6 +21,7 @@ action code {:
    line and column number of the error). */
 parser code {:
 	StringBuilder fullError = new StringBuilder();
+	int ligne,colonne;
     /* Change the method report_error so it will display the line and column of where the error
        occurred in the input as well as the reason for the error which is passed into the method
        in the String 'message'. */
@@ -27,14 +29,14 @@ parser code {:
    
         /* Create a StringBuffer called 'm' with the string 'Error' in it. */
         StringBuffer m = new StringBuffer("Erreur");
-    
         /* Check if the information passed to the method is the same type as the type 
            java_cup.runtime.Symbol. */
         if (info instanceof java_cup.runtime.Symbol) {
             /* Declare a java_cup.runtime.Symbol object 's' with the information in the object 
                info that is being typecasted as a java_cup.runtime.Symbol object. */
             java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
-   
+   		ligne = s.left+1;
+   		colonne = s.right+1;
             /* Check if the line number in the input is greater or equal to zero. */
             if (s.left >= 0) {                
                 /* Add to the end of the StringBuffer error message the line number of the error 
@@ -53,16 +55,13 @@ parser code {:
    
         /* Print the contents of the StringBuffer 'm', which contains an error message, out on 
            a line. */
-        //System.err.println(m);
         fullError.append(m);
     }
     /* Change the method report_fatal_error so when it reports a fatal error it will display the 
        line and column number of where the fatal error occurred in the input as well as the reason
        for the fatal error which is passed into the method in the object 'message' and then exit.*/
     public void report_fatal_error(String message, Object info) {
-    	throw new RuntimeException(fullError.toString());
-        //report_error(message, info);
-        //System.exit(1);
+    	throw new ErreurSyntaxiqueException("Expression non reconnus.",ligne,colonne);
     }
     
     public  BlocDinstructions getBlocDinstructions(){
@@ -145,13 +144,11 @@ AUTRE_DECL ::= VIRGULE IDF:idf
 
 STATUT ::= PUBLIQUE
 			{:
-				System.out.println("public");
 				boolTmp = false;
 				
 			:}
 			| PRIVEE
 			{:
-				System.out.println("private");
 				boolTmp = true;
 			:};
 

@@ -1,6 +1,7 @@
 package modele.arbre;
 
 import modele.Type;
+import modele.analyse.exception.ErreurSemantiqueException;
 
 public abstract class Expression extends Instruction {
 		

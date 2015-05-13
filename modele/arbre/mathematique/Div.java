@@ -1,5 +1,6 @@
 package modele.arbre.mathematique;
 
+import modele.analyse.exception.ErreurSemantiqueException;
 import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 import modele.arbre.OperateurBinaire;
@@ -18,12 +19,13 @@ public class Div extends OperateurBinaire {
     	return opg.toString()+" / "+opd.toString();
     }
     
-    public void semantiqueCorrect() throws OperandeDiffException {
+    public void semantiqueCorrect() {
 
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
-    	if(opg.isBool != opd.isBool) {
-    		throw new OperandeDiffException("OPERATION : DIVISION | ATTENDUS int "+symbole+" int",ligne,colonne);
+    	if(opg.isBool || opd.isBool) {
+    		new OperandeDiffException("DIVISION | ATTENDUS : int "+symbole+" int",ligne,colonne);
+    		
     	}
     	
     }

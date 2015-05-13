@@ -1,6 +1,7 @@
 package modele.arbre.mathematique;
 
 import modele.Type;
+import modele.analyse.exception.ErreurSemantiqueException;
 import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 
@@ -23,10 +24,10 @@ public class MoinsUnaire extends Expression {
 	/**
 	 * Retourne un boolean qui vérifie la sémantique
 	 */
-	public void semantiqueCorrect() throws OperandeDiffException {
+	public void semantiqueCorrect() {
     	e.semantiqueCorrect();
     	if(e.isBool) {
-    		throw new OperandeDiffException("OPERATION : negatif | ATTENDUS - int",ligne,colonne);
+    		new OperandeDiffException("MOINS_UNAIRE | ATTENDUS : - int",ligne,colonne);
     	}
 	}
 	

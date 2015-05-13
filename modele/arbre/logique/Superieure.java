@@ -1,5 +1,6 @@
 package modele.arbre.logique;
 
+import modele.analyse.exception.ErreurSemantiqueException;
 import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 import modele.arbre.OperateurBinaire;
@@ -17,11 +18,11 @@ public class Superieure extends OperateurBinaire{
 		return opg.toString()+" > "+opd.toString();
 	}
 	
-	public void semantiqueCorrect() throws OperandeDiffException {
+	public void semantiqueCorrect() {
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool || opd.isBool) {
-    		throw new OperandeDiffException("OPERATION : "+symbole+" | ATTENDUS int "+symbole+" int",ligne,colonne);
+    		new OperandeDiffException("SUPERIEURE | ATTENDUS : int "+symbole+" int",ligne,colonne);
     	}
 	}
 

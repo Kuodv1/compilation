@@ -1,6 +1,7 @@
 package modele.arbre.logique;
 
 import modele.Type;
+import modele.analyse.exception.ErreurSemantiqueException;
 import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 
@@ -22,10 +23,10 @@ public class Not extends Expression {
 	/**
 	 * Retourne un boolean qui vérifie la sémantique
 	 */
-	public void semantiqueCorrect() throws OperandeDiffException {
+	public void semantiqueCorrect(){
     	e.semantiqueCorrect();
     	if(!e.isBool) {
-    		throw new OperandeDiffException("OPERATION : ! | Attendus !bool",ligne,colonne);
+    		new OperandeDiffException("NOT | ATTENDUS : !bool",ligne,colonne);
     	}
 	}
 	

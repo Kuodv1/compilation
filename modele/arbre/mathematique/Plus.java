@@ -1,5 +1,6 @@
 package modele.arbre.mathematique;
 
+import modele.analyse.exception.ErreurSemantiqueException;
 import modele.analyse.exception.OperandeDiffException;
 import modele.arbre.Expression;
 import modele.arbre.OperateurBinaire;
@@ -17,12 +18,12 @@ public class Plus extends OperateurBinaire {
 		return opg.toString()+" + "+opd.toString();
 	}
     
-    public void semantiqueCorrect() throws OperandeDiffException {
+    public void semantiqueCorrect(){
 
     	opg.semantiqueCorrect();
     	opd.semantiqueCorrect();
     	if(opg.isBool || opd.isBool) {
-    		throw new OperandeDiffException("OPERATION : ADDITION | ATTENDUS int "+symbole+" int",ligne,colonne);
+    		new OperandeDiffException("ADDITION | ATTENDUS : int "+symbole+" int",ligne,colonne);
     	}
     }
     

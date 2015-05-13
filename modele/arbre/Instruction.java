@@ -9,11 +9,6 @@ public class Instruction extends ArbreAbstrait{
 		this.ligne = ligne;
 		this.colonne = colonne;
 	}
-	
-	@Override
-	public void semantiqueCorrect() throws Exception {
-		// TODO Auto-generated method stub
-	}
 
 	@Override
 	public String getCodeDecore() {
@@ -26,6 +21,12 @@ public class Instruction extends ArbreAbstrait{
 	
 	public int getColonne() {
 		return colonne;
+	}
+
+	@Override
+	public void semantiqueCorrect() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

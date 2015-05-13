@@ -30,13 +30,17 @@ public class Affectation extends Instruction{
 		return sb.toString();
 	}
 	
-	public void semantiqueCorrect() throws MauvaiseAffectationException, IdentifiantInexistantException {
+	public void semantiqueCorrect(){
+		e.semantiqueCorrect();
 		Entree tmp = new Entree(i,ligne,colonne);
 		if(!TDS.getInstance().contains(tmp)) {
-			throw new IdentifiantInexistantException("Variable "+i+" inexistante.\n",ligne,colonne);
+			new IdentifiantInexistantException("Variable "+i+" inexistante.\n",ligne,colonne);
 		} else {
 			if(!(TDS.getInstance().identifier(i).memeType(e.getType()))) {
-				throw new MauvaiseAffectationException("Affectation attendus à la variable "+i+" de type : "+e.getType().getType(),ligne,colonne);
+				new MauvaiseAffectationException("Variable "+i+" de type : "+
+						TDS.getInstance().identifier(i).getType().getType()+
+						" | expression de type : "+
+						e.getType().getType(),ligne,colonne);
 			}
 		}
 	}

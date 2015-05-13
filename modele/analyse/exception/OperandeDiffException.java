@@ -1,7 +1,7 @@
 package modele.analyse.exception;
 
-public class OperandeDiffException extends RuntimeException {
+public class OperandeDiffException extends ErreurSemantiqueException {
 	public OperandeDiffException(String message,int ligne, int colonne) {
-		super("ERREUR SYNTAXIQUE : Ligne : "+ligne+" Colonne : "+colonne+"\n"+message);
+		super("ERREUR OPERANDE : "+message,ligne,colonne);
 	}
 }

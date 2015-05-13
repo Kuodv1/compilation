@@ -15,50 +15,34 @@ public class Luncher {
 		InputOutput io = new InputOutput();
 		if(io.verifExt(filename)) {
 			String code = io.readFile(filename);
-			try {
 			
 				AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(
 														new AnalyseurLexical(
 																new ByteArrayInputStream(code.getBytes())));
-				
-				/*AnalyseurLexical al = new AnalyseurLexical(new ByteArrayInputStream(code.getBytes()));
-				parser p = new parser(al);
-				p.parse();*/
+
 				try {
 					analyseur.parse();
 				} catch (Exception e) {
-					System.out.println("Erreur niveau parse()");
-					e.printStackTrace();
+					System.out.println(e.getMessage());
+					System.exit(1);
 				}
+				
 				BlocDinstructions arbre = analyseur.getBlocDinstructions();
-
-				System.out.println("couet");
+				arbre.semantiqueCorrect();
+				
 				boolean err = false;
 				try {
-					arbre.semantiqueCorrect();
+					AnalyseurSemantique.getInstance().analyseErreurSemantique();
 				} catch (Exception e) {
-					System.out.println("Erreur niveau semantiqueCorrect()");
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 					err = true;
 				}
 				if(!err) {
-					//System.out.println(arbre.getCodeDecore());
+					System.out.println("COMPILATION OK\n");
 					io.writeFile(arbre.getCodeDecore(),nameSortie);
+				} else {
+					System.out.println("COMPILATION ABBANDONNEE\n");
 				}
-				
-				/*Entree e  = new Entree("varI",1,3);
-				Symbole s = new Symbole("int",false);
-				TDS tds = TDS.getInstance();
-				tds.ajouter(e, s);
-				if(tds.contains(e)) {
-					System.out.println(tds.identifier(e.toString()).toString());
-				}*/
-
-	
-			}catch (Exception e) {
-				//Erreur d ecriture de code (non reconnus par l analyseurSyntaxique)
-				throw new RuntimeException(e.getMessage());
-			}
 		}else{
 			System.out.println("Arrêt du programme. Fichier avec mauvaise extension et/ou n'existe pas.\n");
 		}

@@ -17,14 +17,10 @@ public class TDS {
 		dictionnaire = new HashMap<String,Symbole>();
 	}
 	
-	public void ajouter(Entree e, Symbole s) throws DoubleDeclarationException{
-		if(contains(e)) {
-			throw new DoubleDeclarationException(e.getEntree(),e.ligne,e.colonne);
-		} else {
-			dictionnaire.put(e.toString(), s);
-			s.setDeplacement(compteur);
-			compteur+=4;
-		}
+	public void ajouter(Entree e, Symbole s){
+		dictionnaire.put(e.toString(), s);
+		s.setDeplacement(compteur);
+		compteur+=4;
 	}
 	
 	public Symbole identifier(String e) {

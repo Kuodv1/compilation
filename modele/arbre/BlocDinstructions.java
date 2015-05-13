@@ -29,10 +29,10 @@ public class BlocDinstructions extends ArbreAbstrait{
 	 */
 	public void ajouter(ArbreAbstrait instruction) {
 		listeInstructions.add(instruction);
-		System.out.println("ajout : "+instruction.toString());
+		//System.out.println("ajout : "+instruction.toString());
 	}
 
-	public void semantiqueCorrect() throws Exception {
+	public void semantiqueCorrect(){
 		int i = 0;
 		while(i<listeInstructions.size()) {
 			listeInstructions.get(i).semantiqueCorrect();

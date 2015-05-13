@@ -4,6 +4,7 @@ import modele.Entree;
 import modele.Symbole;
 import modele.TDS;
 import modele.analyse.exception.DoubleDeclarationException;
+import modele.analyse.exception.ErreurSemantiqueException;
 
 public class Declaration extends Instruction{
 
@@ -29,9 +30,9 @@ public class Declaration extends Instruction{
 		return "Declaration de "+e.toString();
 	}
 	
-	public void semantiqueCorrect() throws DoubleDeclarationException {
+	public void semantiqueCorrect(){
 		if(doubleDecl) {
-			throw new DoubleDeclarationException(e.toString(),ligne,colonne);
+			new DoubleDeclarationException(e.toString(),ligne,colonne);
 		}
 	}
 

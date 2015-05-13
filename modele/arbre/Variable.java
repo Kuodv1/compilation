@@ -3,6 +3,7 @@ package modele.arbre;
 import modele.Entree;
 import modele.Symbole;
 import modele.TDS;
+import modele.analyse.exception.ErreurSemantiqueException;
 import modele.analyse.exception.IdentifiantInexistantException;
 
 public class Variable extends Expression {
@@ -26,10 +27,10 @@ public class Variable extends Expression {
 	}
 	
 	@Override
-	public void semantiqueCorrect() throws IdentifiantInexistantException{
+	public void semantiqueCorrect(){
 		Entree tmp = new Entree(var,ligne,colonne);
 		if(!TDS.getInstance().contains(tmp)) {
-			throw new IdentifiantInexistantException("Variable "+var+" inexistante.\n",ligne,colonne);
+			new IdentifiantInexistantException("Variable "+var+" inexistante.\n",ligne,colonne);
 		}
 		
 	}

@@ -1,5 +1,6 @@
 package modele.arbre;
 
+import modele.analyse.exception.ErreurSemantiqueException;
 import modele.analyse.exception.OperandeDiffException;
 
 public class EcrireExpression extends Instruction{
@@ -12,7 +13,7 @@ public class EcrireExpression extends Instruction{
 	}
 
 	
-	public void semantiqueCorrect() throws OperandeDiffException {
+	public void semantiqueCorrect() {
 		e.semantiqueCorrect();
 	}
 	
