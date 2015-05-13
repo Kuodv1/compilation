@@ -40,11 +40,13 @@ fi
 #fi
 
 #On execute le fichier plic
-fichierSortie="$1"
-java -jar $2 $1 $fichierSortie
+
+fichierSortie=$(echo $BIDULEACONVERTIR | sed s/'.plic'/''/g)
+
+java -jar Plic1.jar $1 $fichierSortie
 
 #On deplace le fichier asm dans le repertoire tmp
-test="$1.asm"
+test="$fichierSortie.asm"
 if [ -e $test ]
 then
 mv $test /tmp/$test
