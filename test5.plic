@@ -2,5 +2,15 @@ classe test
 
 ecrire "coucou fdp""""""""";ecrire "ta mere la pute";
 
+publique entier a,b;
+privee entier c;
+
+
+lire a;
+ecrire "\n";
+lire b;
+ecrire "\n";
+c = a+b;
+ecrire c;
 
 fin

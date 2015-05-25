@@ -1,6 +1,6 @@
 #! /bin/bash
 
-export MARSPATH=/opt/depot/compilation/Mars4_5.jar
+export MARSPATH=/home/kuod/Compilation/Mars4_5.jar
 #Verification du nombre de parametre
 if [ $# -ne 2 ]
 then
@@ -41,7 +41,7 @@ fi
 
 #On execute le fichier plic
 
-fichierSortie=$(echo $BIDULEACONVERTIR | sed s/'.plic'/''/g)
+fichierSortie=$(echo $1 | sed s/'.plic'/''/g)
 
 java -jar Plic1.jar $1 $fichierSortie
 
@@ -58,7 +58,7 @@ fichierasm="/tmp/$test"
 #Execution du fichier asm avec MARS
 if [ -e $fichierasm ]
 then
-java -jar $MARSPATH $fichierasm
+java -jar $MARSPATH -1 $fichierasm
 else
 exit 1
 fi

@@ -22,6 +22,7 @@ action code {:
 parser code {:
 	StringBuilder fullError = new StringBuilder();
 	int ligne,colonne;
+	String valeurTraite;
     /* Change the method report_error so it will display the line and column of where the error
        occurred in the input as well as the reason for the error which is passed into the method
        in the String 'message'. */
@@ -37,6 +38,7 @@ parser code {:
             java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
    		ligne = s.left+1;
    		colonne = s.right+1;
+   		valeurTraite = (String) s.value;
             /* Check if the line number in the input is greater or equal to zero. */
             if (s.left >= 0) {                
                 /* Add to the end of the StringBuffer error message the line number of the error 
@@ -61,7 +63,7 @@ parser code {:
        line and column number of where the fatal error occurred in the input as well as the reason
        for the fatal error which is passed into the method in the object 'message' and then exit.*/
     public void report_fatal_error(String message, Object info) {
-    	throw new ErreurSyntaxiqueException("Expression non reconnus.",ligne,colonne);
+    	throw new ErreurSyntaxiqueException("Element inatendus :  \""+valeurTraite+"\".",ligne,colonne);
     }
     
     public  BlocDinstructions getBlocDinstructions(){

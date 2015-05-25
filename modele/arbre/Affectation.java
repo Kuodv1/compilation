@@ -36,7 +36,7 @@ public class Affectation extends Instruction{
 		if(!TDS.getInstance().contains(tmp)) {
 			new IdentifiantInexistantException("Variable "+i+" inexistante.\n",ligne,colonne);
 		} else {
-			if(!(TDS.getInstance().identifier(i).memeType(e.getType()))) {
+			if(!(e.getType().getType()=="null") && !(TDS.getInstance().identifier(i).memeType(e.getType()))) {
 				new MauvaiseAffectationException("Variable "+i+" de type "+
 						TDS.getInstance().identifier(i).getType().getType()+
 						" | expression de type "+

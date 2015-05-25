@@ -37,7 +37,7 @@ lettre = [a-zA-Z]
 chiffre = [0-9]
 
 nombre  = {chiffre}+
-idf = {lettre}+
+idf = [a-zA-Z][a-zA-Z0-9]*
 
 bool = "vrai" | "faux"
 
@@ -92,4 +92,5 @@ csteChaine = [\"]([^\"]+ | [\"][\"]([^\"]*)[\"][\"])+[\"]
 <YYINITIAL>	{csteChaine}	{return symbol(CodesLexicaux.CSTECHAINE, yytext()); }
 \n                      {}
 " "						{}
+\t						{}
 .                       {throw new ErreurLexicaleException(yytext()+" non reconnus",yyline+1,yycolumn);}

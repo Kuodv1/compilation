@@ -1,5 +1,6 @@
 #! /bin/bash
 
+#export MARSPATH=/opt/depot/compilation/Mars4_5.jar
 #Verification du nombre de parametre
 if [ $# -ne 2 ]
 then
@@ -42,7 +43,7 @@ fi
 
 fichierSortie=$(echo $1 | sed s/'.plic'/''/g)
 
-java -jar Plic1.jar $1 $fichierSortie
+java -jar ./Plic1.jar $1 $fichierSortie
 
 #On deplace le fichier asm dans le repertoire tmp
 test="$fichierSortie.asm"
@@ -53,7 +54,7 @@ else
 exit 1
 fi
 fichierasm="/tmp/$test"
-
+echo $fichierasm
 #Execution du fichier asm avec MARS
 if [ -e $fichierasm ]
 then
