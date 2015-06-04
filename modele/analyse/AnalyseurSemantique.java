@@ -26,9 +26,10 @@ public class AnalyseurSemantique {
 	public void analyseErreurSemantique() throws Exception{
 		if(presenceErreur()){
 			StringBuilder sb = new StringBuilder();
-			for(String s : listeErreurSemantique) {
-				sb.append(s+"\n");
+			for(int i = 0; i<listeErreurSemantique.size()-1;i++) {
+				sb.append(listeErreurSemantique.get(i)+"\n");
 			}
+			sb.append(listeErreurSemantique.get(listeErreurSemantique.size()-1));
 			throw new Exception(sb.toString());
 		}
 	}

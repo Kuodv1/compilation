@@ -1,5 +1,6 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import modele.analyse.exception.DoubleDeclarationException;
@@ -10,11 +11,14 @@ public class TDS {
 	public static TDS getInstance() {return tds;}
 	
 	private HashMap<String,Symbole> dictionnaire;
+	//private HashMap<HashMap<String,Symbole>,HashMap<String,Symbole>> tableDictionnaire;
 	private int compteur;
 	
 	private TDS(){
 		compteur = 0;
 		dictionnaire = new HashMap<String,Symbole>();
+		//tableDictionnaire = new HashMap<HashMap<String,Symbole>,HashMap<String,Symbole>>();
+		//tableDictionnaire.put(dictionnaire, dictionnaire);
 	}
 	
 	public void ajouter(Entree e, Symbole s){
@@ -22,6 +26,11 @@ public class TDS {
 		s.setDeplacement(compteur);
 		compteur+=4;
 	}
+	
+	//key = fils, value = pere
+	//public HashMap<String,Symbole> getDictionnairePere(HashMap<String,Symbole> fils) {
+	//	return tableDictionnaire.get(fils);
+	//}
 	
 	public Symbole identifier(String e) {
 		return dictionnaire.get(e);
@@ -35,9 +44,14 @@ public class TDS {
 		return dictionnaire.size();
 	}
 	
-	public void entrerBloc() {
+	public void ouvrirBloc() {
+		//HashMap<String,Symbole> newDictionnaire = new HashMap<String,Symbole>();
+		//tableDictionnaire.put(newDictionnaire, dictionnaire);
+		//dictionnaire = newDictionnaire;
+		
 	}
 	
-	public void sortirBloc() {
+	public void fermerBloc() {
+		//dictionnaire = tableDictionnaire.get(dictionnaire);
 	}
 }

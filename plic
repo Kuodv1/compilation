@@ -3,7 +3,7 @@
 #Verification du nombre de parametre
 if [ $# -ne 2 ]
 then
-  echo "Erreur : nombre de parametre incorrect"
+  echo "Erreur arguments, deux arguments attendus : <fichier.plic> <classe du fichier>"
   exit 1
 fi
 
@@ -21,22 +21,6 @@ else
 echo "Erreur 1er args : ce fichier n'est pas un fichier"
 exit 1
 fi
- 
-
-#Verification du deuxieme argument
-#if [ -f $2 ]
-#then
-# if [ -e $2 ]
-# then
-# vide=0
-# else
-#  echo "Erreur 2eme args : fichier inexistant"
-#  exit 1
-#  fi
-#else
-#echo "Erreur 2eme args : ce fichier n'est pas un fichier"
-#exit 1
-#fi
 
 #On execute le fichier plic
 
@@ -57,7 +41,20 @@ fichierasm="/tmp/$test"
 #Execution du fichier asm avec MARS
 if [ -e $fichierasm ]
 then
-java -jar $MARSPATH -1 $fichierasm
+varAPasPrendre="MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar"
+stdbuf -oL java -jar $MARSPATH -1 $fichierasm |
+  while IFS= read -r line
+  do
+	if [ "$line" != "$varAPasPrendre" ] 
+	then
+		if [ "$line" != "" ]
+		then
+   		 echo "$line"
+		fi
+
+	fi
+
+  done
 else
 exit 1
 fi

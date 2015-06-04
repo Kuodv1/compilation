@@ -38,7 +38,7 @@ public class Luncher {
 					err = true;
 				}
 				if(!err) {
-					System.out.println("COMPILATION OK\n");
+					System.out.println("COMPILATION OK");
 					io.writeFile(arbre.getCodeDecore(),nameSortie);
 				} /*else {
 					System.out.println("COMPILATION ABBANDONNEE\n");
